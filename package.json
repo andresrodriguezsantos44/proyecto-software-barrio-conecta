@@ -1,0 +1,21 @@
+{
+  "name": "barrio-conecta",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "shared/contracts"
+  ],
+  "scripts": {
+    "lint": "bun run --filter '*' lint",
+    "typecheck": "bun run --filter '*' typecheck",
+    "test": "bun run --cwd apps/api test && bun run --cwd apps/web test",
+    "test:api": "bun run --cwd apps/api test",
+    "test:web": "bun run --cwd apps/web test",
+    "test:all": "bun run test",
+    "dev:api": "bun run --cwd apps/api dev",
+    "dev:web": "bun run --cwd apps/web dev",
+    "seed": "bun run --cwd apps/api seed"
+  }
+}
