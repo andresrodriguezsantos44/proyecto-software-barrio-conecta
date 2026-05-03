@@ -228,6 +228,7 @@ const isOwner = () => {
             <span v-else class="text-gray-400">No disponible</span>
           </div>
         </div>
+      </div>
 
       <!-- Reviews Section -->
       <div class="card">

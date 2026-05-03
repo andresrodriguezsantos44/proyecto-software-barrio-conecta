@@ -204,9 +204,9 @@ function getCategoryName(categoryId: string | null): string {
       <button class="btn-primary mt-4" @click="handleSearch">Reintentar</button>
     </div>
 
-    <div v-else-if="searchStore.results.length > 0">
+    <div v-else-if="searchStore.results?.length > 0">
       <p class="text-sm text-gray-500 mb-4">
-        {{ searchStore.results.length }} {{ searchStore.results.length === 1 ? 'negocio encontrado' : 'negocios encontrados' }}
+        {{ searchStore.results?.length }} {{ searchStore.results?.length === 1 ? 'negocio encontrado' : 'negocios encontrados' }}
         <span v-if="searchStore.query?.categoryId">
           en "{{ getCategoryName(searchStore.query.categoryId) }}"
         </span>

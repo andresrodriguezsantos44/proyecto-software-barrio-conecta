@@ -24,8 +24,10 @@ export async function searchBusinesses(
 
     res.json({
       status: 'success',
-      data: result.businesses,
-      ...(result.message ? { message: result.message } : {}),
+      data: {
+        businesses: result.businesses,
+        ...(result.message ? { message: result.message } : {}),
+      },
     });
   } catch (err) {
     next(err);

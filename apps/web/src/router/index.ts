@@ -28,6 +28,18 @@ const routes: RouteRecordRaw[] = [
     meta: { public: true, guestOnly: true },
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/AuthView.vue'),
+    meta: { public: true, guestOnly: true, authMode: 'login' },
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/AuthView.vue'),
+    meta: { public: true, guestOnly: true, authMode: 'register' },
+  },
+  {
     path: '/business/:id',
     name: 'business-detail',
     component: () => import('@/views/BusinessDetailView.vue'),
@@ -70,7 +82,7 @@ router.beforeEach((to, _from, next) => {
 
   // Route requires authentication
   if (to.meta.requiresAuth && !token) {
-    return next({ name: 'auth', query: { redirect: to.fullPath } });
+    return next({ name: 'login', query: { redirect: to.fullPath } });
   }
 
   // Route requires specific role

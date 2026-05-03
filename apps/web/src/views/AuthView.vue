@@ -22,6 +22,23 @@ const formName = ref('');
 const formRole = ref<UserRole>('neighbor');
 const showPassword = ref(false);
 
+function syncModeFromRoute(): void {
+  const authMode = route.meta.authMode as 'login' | 'register' | undefined;
+  isLoginMode.value = authMode !== 'register';
+
+  const requestedRole = route.query.role;
+  if (!isLoginMode.value && (requestedRole === 'merchant' || requestedRole === 'neighbor')) {
+    formRole.value = requestedRole;
+    return;
+  }
+
+  if (!isLoginMode.value && formRole.value !== 'merchant' && formRole.value !== 'neighbor') {
+    formRole.value = 'neighbor';
+  }
+}
+
+syncModeFromRoute();
+
 // --- Vuelidate rules ---
 // Computed rules switch based on mode (login vs register)
 const rules = computed(() => {
@@ -63,9 +80,16 @@ async function handleSubmit(): Promise<void> {
 }
 
 function toggleMode(): void {
-  isLoginMode.value = !isLoginMode.value;
   authStore.clearError();
   v$.value.$reset();
+  const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : undefined;
+
+  if (isLoginMode.value) {
+    router.push({ name: 'register', query: { ...(redirect ? { redirect } : {}), role: formRole.value } });
+    return;
+  }
+
+  router.push({ name: 'login', query: redirect ? { redirect } : undefined });
 }
 
 const roleOptions: { value: UserRole; label: string; description: string }[] = [
@@ -77,6 +101,15 @@ const roleOptions: { value: UserRole; label: string; description: string }[] = [
 watch(isLoginMode, () => {
   v$.value.$reset();
 });
+
+watch(
+  () => [route.name, route.query.role],
+  () => {
+    syncModeFromRoute();
+    authStore.clearError();
+    v$.value.$reset();
+  },
+);
 </script>
 
 <template>
@@ -85,6 +118,10 @@ watch(isLoginMode, () => {
       <h1 class="text-2xl font-bold text-gray-900 mb-6 text-center">
         {{ isLoginMode ? 'Ingresar' : 'Crear Cuenta' }}
       </h1>
+
+      <p class="mb-6 text-center text-sm text-gray-500">
+        {{ isLoginMode ? 'Entrá para gestionar tu cuenta y tus negocios.' : 'Creá tu cuenta para explorar o publicar tu comercio.' }}
+      </p>
 
       <div v-if="authStore.error" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
         {{ authStore.error }}
@@ -173,6 +210,9 @@ watch(isLoginMode, () => {
                 <span class="text-xs">{{ role.description }}</span>
               </button>
             </div>
+            <p class="mt-2 text-xs text-gray-500">
+              Si querés registrar un comercio, elegí <strong>Comercio</strong>.
+            </p>
           </div>
         </div>
 

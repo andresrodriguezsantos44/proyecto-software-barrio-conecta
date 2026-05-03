@@ -5,6 +5,7 @@
 // ============================================================================
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import type { RouteLocationRaw } from 'vue-router';
 import { useAuthStore } from '@/stores';
 
 const authStore = useAuthStore();
@@ -15,6 +16,67 @@ const isAuthenticated = computed(() => authStore.isAuthenticated);
 const isMerchant = computed(() => authStore.isMerchant);
 const isAdmin = computed(() => authStore.isAdmin);
 const userName = computed(() => authStore.user?.name ?? '');
+const userRole = computed(() => authStore.user?.role ?? null);
+
+const primaryAction = computed<{ label: string; to: RouteLocationRaw }>(() => {
+  if (isAdmin.value) {
+    return {
+      label: 'Panel Admin',
+      to: { name: 'admin-dashboard' },
+    };
+  }
+
+  if (isMerchant.value) {
+    return {
+      label: 'Panel de Control',
+      to: { name: 'merchant-dashboard' },
+    };
+  }
+
+  if (isAuthenticated.value) {
+    return {
+      label: 'Explorar negocios',
+      to: { name: 'explore' },
+    };
+  }
+
+  return {
+    label: 'Publicar mi negocio',
+    to: { name: 'register', query: { role: 'merchant', redirect: '/dashboard' } },
+  };
+});
+
+const mobileProfileAction = computed<{ label: string; to: RouteLocationRaw; icon: string }>(() => {
+  if (isAdmin.value) {
+    return {
+      label: 'Admin',
+      to: { name: 'admin-dashboard' },
+      icon: 'shield_person',
+    };
+  }
+
+  if (isMerchant.value) {
+    return {
+      label: 'Mi negocio',
+      to: { name: 'merchant-dashboard' },
+      icon: 'storefront',
+    };
+  }
+
+  if (isAuthenticated.value) {
+    return {
+      label: 'Perfil',
+      to: { name: 'landing' },
+      icon: 'person',
+    };
+  }
+
+  return {
+    label: 'Ingresar',
+    to: { name: 'login' },
+    icon: 'login',
+  };
+});
 
 function handleLogout(): void {
   authStore.logout();
@@ -40,6 +102,24 @@ function handleLogout(): void {
             >
               Explorar
             </router-link>
+
+            <router-link
+              v-if="userRole === 'merchant'"
+              :to="{ name: 'merchant-dashboard' }"
+              class="font-headline-md text-sm font-medium transition-colors hover:text-primary"
+              :class="[route.name === 'merchant-dashboard' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant']"
+            >
+              Mi negocio
+            </router-link>
+
+            <router-link
+              v-if="userRole === 'admin'"
+              :to="{ name: 'admin-dashboard' }"
+              class="font-headline-md text-sm font-medium transition-colors hover:text-primary"
+              :class="[route.name === 'admin-dashboard' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant']"
+            >
+              Panel Admin
+            </router-link>
           </div>
         </div>
 
@@ -55,7 +135,7 @@ function handleLogout(): void {
           </template>
           <template v-else>
             <router-link 
-              :to="{ name: 'auth' }" 
+              :to="{ name: 'login' }" 
               class="hidden lg:block text-on-surface-variant font-semibold px-4 py-2 active:scale-95 transition-transform duration-200"
             >
               Iniciar Sesión
@@ -63,10 +143,10 @@ function handleLogout(): void {
           </template>
           
           <router-link 
-            :to="{ name: 'auth' }"
+            :to="primaryAction.to"
             class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-sm shadow-md hover:bg-primary-container active:scale-95 transition-all duration-200"
           >
-            {{ isMerchant ? 'Panel de Control' : 'Publicar mi negocio' }}
+            {{ primaryAction.label }}
           </router-link>
         </div>
       </nav>
@@ -144,9 +224,9 @@ function handleLogout(): void {
         <span class="material-symbols-outlined">search</span>
         <span>Explorar</span>
       </router-link>
-      <router-link :to="{ name: 'auth' }" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 text-[10px] font-semibold hover:bg-surface-container transition-all duration-150">
-        <span class="material-symbols-outlined">person</span>
-        <span>Perfil</span>
+      <router-link :to="mobileProfileAction.to" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 text-[10px] font-semibold hover:bg-surface-container transition-all duration-150">
+        <span class="material-symbols-outlined">{{ mobileProfileAction.icon }}</span>
+        <span>{{ mobileProfileAction.label }}</span>
       </router-link>
     </div>
   </div>
