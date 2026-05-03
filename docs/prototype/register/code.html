@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro - BarrioConecta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#c74668",
+                    "background": "#f4fcf0",
+                    "surface-dim": "#d5dcd1",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bdcaba",
+                    "on-error": "#ffffff",
+                    "surface": "#f4fcf0",
+                    "surface-bright": "#f4fcf0",
+                    "secondary": "#0051d5",
+                    "surface-container": "#e9f0e5",
+                    "on-primary-fixed": "#002109",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-primary": "#62df7d",
+                    "on-tertiary-fixed-variant": "#8a143c",
+                    "on-primary-container": "#f7fff2",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#00174b",
+                    "secondary-container": "#316bf3",
+                    "error": "#ba1a1a",
+                    "on-surface": "#171d16",
+                    "primary": "#006b2c",
+                    "primary-container": "#00873a",
+                    "surface-container-highest": "#dde5d9",
+                    "on-tertiary-fixed": "#3f0016",
+                    "primary-fixed-dim": "#62df7d",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#a72d51",
+                    "tertiary-fixed": "#ffd9de",
+                    "tertiary-fixed-dim": "#ffb2bf",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-container-high": "#e3eadf",
+                    "surface-container-low": "#eff6ea",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-primary-fixed-variant": "#005320",
+                    "secondary-fixed": "#dbe1ff",
+                    "outline": "#6e7b6c",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#006e2d",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2b322b",
+                    "inverse-on-surface": "#ecf3e7",
+                    "primary-fixed": "#7ffc97",
+                    "on-background": "#171d16",
+                    "surface-variant": "#dde5d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "base": "4px",
+                    "lg": "32px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "xl": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 15px -3px rgba(0, 107, 44, 0.05), 0 4px 6px -2px rgba(0, 107, 44, 0.03);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component Guide Implementation) -->
+<!-- Shell Visibility Rule: Navigation is typically suppressed for transactional screens like Sign-up. However, as it's the gateway, a minimalist logo-only version is often used. Following the "Suppression" rule for transactional flows, we prioritize the content canvas. -->
+<main class="flex-grow flex items-center justify-center p-sm md:p-lg relative overflow-hidden">
+<!-- Abstract Background Shapes for Visual Interest -->
+<div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-primary-fixed rounded-full blur-[100px] opacity-20"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-80 h-80 bg-secondary-fixed rounded-full blur-[100px] opacity-20"></div>
+<div class="w-full max-w-lg z-10">
+<!-- Brand Anchor -->
+<div class="text-center mb-xs">
+<span class="text-xl font-extrabold tracking-tight text-primary font-display-xl">BarrioConecta</span>
+</div>
+<div class="glass-card border border-outline-variant/30 rounded-[2rem] p-md md:p-xl">
+<div class="text-center mb-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-base">Crea tu cuenta</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Únete a la red de proximidad digital de tu barrio.</p>
+</div>
+<form class="space-y-sm">
+<!-- Account Type Selector -->
+<div class="grid grid-cols-2 gap-sm p-base bg-surface-container rounded-xl">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" name="account_type" type="radio" value="vecino"/>
+<div class="flex flex-col items-center justify-center py-sm rounded-lg border-2 border-transparent peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+<span class="material-symbols-outlined mb-base">person</span>
+<span class="font-label-sm text-label-sm">Vecino</span>
+</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="account_type" type="radio" value="comerciante"/>
+<div class="flex flex-col items-center justify-center py-sm rounded-lg border-2 border-transparent peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+<span class="material-symbols-outlined mb-base">storefront</span>
+<span class="font-label-sm text-label-sm">Comerciante</span>
+</div>
+</label>
+</div>
+<!-- Input Fields -->
+<div class="space-y-xs">
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-base ml-base" for="full_name">Nombre completo</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">person_outline</span>
+<input class="w-full pl-[44px] pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="full_name" placeholder="Ej. Juan Pérez" type="text"/>
+</div>
+</div>
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-base ml-base" for="email">Correo electrónico</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="w-full pl-[44px] pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="email" placeholder="tu@email.com" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-base ml-base" for="password">Contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full pl-[44px] pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-base ml-base" for="confirm_password">Confirmar contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">lock_reset</span>
+<input class="w-full pl-[44px] pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="confirm_password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Special Note for Merchants (Conditional appearance logic) -->
+<div class="p-sm bg-primary-fixed/30 border border-primary-fixed-dim rounded-xl flex items-start gap-xs" id="merchant-note">
+<span class="material-symbols-outlined text-primary-container shrink-0" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-label-sm font-label-sm text-on-primary-fixed-variant leading-tight">Después de crear tu cuenta podrás registrar la información de tu negocio.</p>
+</div>
+<!-- Main Action -->
+<button class="w-full bg-primary text-on-primary font-headline-md py-sm rounded-xl shadow-lg hover:shadow-xl hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-xs" type="submit">
+                        Crear cuenta
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<div class="mt-md pt-md border-t border-outline-variant/40 text-center">
+<p class="font-body-md text-on-surface-variant">
+                        ¿Ya tienes cuenta? 
+                        <a class="text-primary font-bold hover:underline" href="#">Inicia sesión</a>
+</p>
+</div>
+</div>
+<!-- Illustration / Background Image Decor -->
+<div class="mt-lg flex justify-center opacity-40">
+<img class="h-24 w-auto grayscale mix-blend-multiply filter blur-[0.5px]" data-alt="A vibrant and bustling local neighborhood street scene in a modern European city, captured in soft morning light. People of diverse ages are walking and interacting near clean, glass-fronted shops with green plants outside. The overall mood is warm, safe, and community-oriented, using a bright light-mode aesthetic with soft emerald and blue accents reflecting the digital proximity brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYrEeqAsYPt-5JBFV_BMukAlSdpMkm8_unmrObX7omPcqhnkPi-_wI0_d2gcILY56NwYQYDCUxXDIZ9sBDR1JDUixlmXJEREEP_fvpCYtDLPd-yJvVoavH7qHyDMjxaXk-2PISIIvYW_n3QMS4aSYNUOQnj0JvtH16QVJQ7PxSae_R5fIjdhNIp1Wy0wN1JQUENjiWXUMaQyuKQdXAJ2OK8r9-VyPC3FDoRpycb3kqqFx8G3PvPQJWahr5l5ZmRWLIjuUO6SuL4tw"/>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Suppressed per UX Goal: Transactional Journey (Registration) -->
+</body></html>

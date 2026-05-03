@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crear Perfil de Negocio - BarrioConecta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active {
+            @apply ring-4 ring-primary-container ring-offset-2;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-container": "#c74668",
+                        "background": "#f4fcf0",
+                        "surface-dim": "#d5dcd1",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#bdcaba",
+                        "on-error": "#ffffff",
+                        "surface": "#f4fcf0",
+                        "surface-bright": "#f4fcf0",
+                        "secondary": "#0051d5",
+                        "surface-container": "#e9f0e5",
+                        "on-primary-fixed": "#002109",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-primary": "#62df7d",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-container": "#f7fff2",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00174b",
+                        "secondary-container": "#316bf3",
+                        "error": "#ba1a1a",
+                        "on-surface": "#171d16",
+                        "primary": "#006b2c",
+                        "primary-container": "#00873a",
+                        "surface-container-highest": "#dde5d9",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a72d51",
+                        "tertiary-fixed": "#ffd9de",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-high": "#e3eadf",
+                        "surface-container-low": "#eff6ea",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed": "#dbe1ff",
+                        "outline": "#6e7b6c",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2b322b",
+                        "inverse-on-surface": "#ecf3e7",
+                        "primary-fixed": "#7ffc97",
+                        "on-background": "#171d16",
+                        "surface-variant": "#dde5d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar (Context: Onboarding/Transactional, but we include it for Brand Identity) -->
+<header class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm">
+<div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto w-full">
+<div class="text-xl font-extrabold tracking-tight text-emerald-700">BarrioConecta</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 font-medium hover:text-emerald-500 transition-colors text-sm">Cancelar</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 py-12">
+<!-- Progress Stepper -->
+<div class="mb-12">
+<div class="flex items-center justify-between relative">
+<!-- Progress Line -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-surface-container-highest -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 w-1/4 h-0.5 bg-primary -translate-y-1/2 z-0 transition-all duration-500"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg ring-4 ring-background">
+                        1
+                    </div>
+<span class="mt-2 text-label-sm font-label-sm text-primary">Información</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-background">
+                        2
+                    </div>
+<span class="mt-2 text-label-sm font-label-sm text-on-surface-variant">Ubicación</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-background">
+                        3
+                    </div>
+<span class="mt-2 text-label-sm font-label-sm text-on-surface-variant">Horarios</span>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-background">
+                        4
+                    </div>
+<span class="mt-2 text-label-sm font-label-sm text-on-surface-variant">Fotos</span>
+</div>
+</div>
+</div>
+<!-- Form Card -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/30">
+<div class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Cuéntanos sobre tu negocio</h1>
+<p class="text-on-surface-variant text-body-md font-body-md">Esta información ayudará a los vecinos a encontrarte y conocer lo que ofreces.</p>
+</div>
+<form class="space-y-6">
+<!-- Business Name -->
+<div class="space-y-2">
+<label class="block text-label-sm font-label-sm text-on-surface" for="business_name">Nombre del negocio</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary bg-white outline-none transition-all" esperanza""="" id="business_name" la="" placeholder="Ej. Panadería " type="text"/>
+</div>
+<!-- Category -->
+<div class="space-y-2">
+<label class="block text-label-sm font-label-sm text-on-surface" for="category">Categoría</label>
+<div class="relative">
+<select class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary bg-white outline-none appearance-none transition-all" id="category">
+<option disabled="" selected="" value="">Selecciona una categoría</option>
+<option value="gastronomia">Gastronomía y Cafetería</option>
+<option value="almacen">Almacén y Minimarket</option>
+<option value="servicios">Servicios Técnicos</option>
+<option value="belleza">Belleza y Estética</option>
+<option value="artesanias">Artesanías y Regalos</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">
+                                    expand_more
+                                </span>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="block text-label-sm font-label-sm text-on-surface" for="description">Descripción</label>
+<span class="text-xs text-on-surface-variant">0 / 300</span>
+</div>
+<textarea class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary bg-white outline-none transition-all resize-none" id="description" placeholder="Describe brevemente qué hace único a tu negocio..." rows="4"></textarea>
+</div>
+<!-- Actions -->
+<div class="pt-6 flex justify-end">
+<button class="bg-primary text-white font-label-sm text-label-sm px-8 py-4 rounded-xl hover:bg-primary-container active:scale-95 transition-all shadow-md flex items-center gap-2" type="button">
+                                Siguiente
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Helpful Tips Sidebar -->
+<div class="md:col-span-4 space-y-6">
+<div class="bg-primary-container/10 p-6 rounded-xl border border-primary-container/20">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<div>
+<h3 class="font-headline-md text-sm font-bold text-primary mb-2">Consejos del Barrio</h3>
+<ul class="space-y-3 text-xs text-on-surface-variant">
+<li class="flex gap-2">
+<span class="text-primary font-bold">•</span>
+<span>Usa el nombre comercial por el que todos te conocen en la zona.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-primary font-bold">•</span>
+<span>Una buena descripción aumenta tus visitas en un 40%.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-primary font-bold">•</span>
+<span>Sé específico con tus especialidades para aparecer en búsquedas locales.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm aspect-square relative group">
+<img alt="Local shop owners" class="w-full h-full object-cover" data-alt="A warm and welcoming medium shot of a local shop owner standing proudly inside their vibrant, emerald-accented boutique. The lighting is soft and natural, coming from a large storefront window, highlighting the organic wooden textures of the shelves. The color palette is dominated by fresh greens and warm neutrals, creating a friendly and trustworthy community atmosphere. The mood is optimistic and professional, reflecting the spirit of a thriving neighborhood business." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC50gxS64xfORLroEa_PqPfrH2GakvVOLqaqOrrmS0ryRCQaEBAsaBtq4JwDKTSjDAja5G8TNBymAs6397h_ch4B9Ahw6Bkngmg_2YWfEDcIFu_bTBn8bA312n0ARuWRtGB6t849wYNpj3ao1sDZ8FCoNHKFoAsswPNxrAMHsMn1g_DshrfSrZHBIxw5paEJI0VYaqmeruU43CqhsmfQ2eJMScQzmXrVhtxlvnnvocsYrKV74PZlRIpaEvZHMZv_phdhAkct8OBS6U"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+<p class="text-white text-xs font-medium">Únete a más de 500 comercios locales ya registrados.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Floating Feedback (Visual cue only) -->
+<div class="fixed bottom-8 right-8 bg-surface-container-highest/80 backdrop-blur-sm border border-outline-variant px-4 py-2 rounded-full flex items-center gap-3 shadow-lg hidden md:flex">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs font-medium text-on-surface-variant">Tus cambios se guardan automáticamente</span>
+</div>
+</body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-container": "#c74668",
+                        "background": "#f4fcf0",
+                        "surface-dim": "#d5dcd1",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#bdcaba",
+                        "on-error": "#ffffff",
+                        "surface": "#f4fcf0",
+                        "surface-bright": "#f4fcf0",
+                        "secondary": "#0051d5",
+                        "surface-container": "#e9f0e5",
+                        "on-primary-fixed": "#002109",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-primary": "#62df7d",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-container": "#f7fff2",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00174b",
+                        "secondary-container": "#316bf3",
+                        "error": "#ba1a1a",
+                        "on-surface": "#171d16",
+                        "primary": "#006b2c",
+                        "primary-container": "#00873a",
+                        "surface-container-highest": "#dde5d9",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a72d51",
+                        "tertiary-fixed": "#ffd9de",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-high": "#e3eadf",
+                        "surface-container-low": "#eff6ea",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed": "#dbe1ff",
+                        "outline": "#6e7b6c",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2b322b",
+                        "inverse-on-surface": "#ecf3e7",
+                        "primary-fixed": "#7ffc97",
+                        "on-background": "#171d16",
+                        "surface-variant": "#dde5d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Desktop Navigation: SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 border-r border-slate-200 bg-slate-50 p-4 space-y-2 z-50">
+<div class="mb-8 px-4">
+<span class="text-lg font-bold text-emerald-700 block">BarrioConecta</span>
+<span class="text-xs text-slate-500 font-medium">Administración Local</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 mb-6">
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtkNJLw1w_vzZRLoWKvU6zXsmqqMysfpsXds4Q5BQYIqNQuFIb6CQ1F-_JJaIqCH2J9jPwI2hrVh0uPnLGQbcI-0_ggcMEaFkT1Ibhib44BSvC_ZGgx3d5m7CvrwXQC2a_aeXnG5UaxAVoxb9qhtjTRv6C4EzpyyFp4Z7ZFEbrETzNg7wzb5C1D-R2wQp3gRcMjp20m0Je3kzz-xbMoYVNM4XsYMl8case31wbpKkHdRdvG2DqvuslxRQKs5RMDTmGSgseRRgOUlQ"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Panel de Gestión</p>
+<p class="text-[10px] text-on-surface-variant">La Panadería de Juan</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-100 hover:translate-x-1 transition-all rounded-lg font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-100 hover:translate-x-1 transition-all rounded-lg font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+                Mi Negocio
+            </a>
+<!-- ACTIVE TAB: Reseñas -->
+<a class="flex items-center gap-3 bg-white text-emerald-700 shadow-sm rounded-lg px-4 py-3 font-semibold font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+                Reseñas
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-100 hover:translate-x-1 transition-all rounded-lg font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Métricas
+            </a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-100 hover:translate-x-1 transition-all rounded-lg font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                Moderación
+            </a>
+</nav>
+<div class="mt-auto pt-4 border-t border-slate-200">
+<a class="flex items-center gap-3 text-slate-500 px-4 py-3 hover:bg-slate-100 transition-all rounded-lg text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Configuración
+            </a>
+<a class="flex items-center gap-3 text-error px-4 py-3 hover:bg-red-50 transition-all rounded-lg text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 p-4 md:p-lg pb-24 md:pb-lg max-w-5xl mx-auto">
+<!-- Header & Filters Section -->
+<header class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-md">Reseñas recibidas</h1>
+<div class="flex flex-wrap items-center gap-sm bg-surface-container-low p-sm rounded-xl border border-outline-variant/30">
+<div class="flex flex-wrap gap-xs">
+<button class="px-md py-xs bg-primary text-on-primary rounded-full font-label-sm shadow-sm transition-transform active:scale-95">Todas</button>
+<button class="px-md py-xs bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high rounded-full font-label-sm transition-all">Sin responder</button>
+<button class="px-md py-xs bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high rounded-full font-label-sm transition-all">Respondidas</button>
+</div>
+<div class="h-8 w-px bg-outline-variant/40 mx-xs hidden sm:block"></div>
+<div class="relative group">
+<button class="flex items-center gap-xs px-md py-xs bg-white border border-outline-variant rounded-lg font-label-sm text-on-surface-variant hover:border-primary transition-colors">
+                        Calificación
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Reviews List -->
+<section class="space-y-gutter">
+<!-- Review Card 1: Needs Response -->
+<article class="bg-surface-container-lowest p-md rounded-xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.04),0_4px_6px_-2px_rgba(0,107,44,0.02)] border border-outline-variant/20">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-md">
+<img alt="Avatar Vecino" class="w-12 h-12 rounded-full bg-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJDtZQ1MQWySc8V_eE_wkHteEGLv6RdFHPDW7VT2tPnseJ7qEGYDFx9gpoXBDwKSo2CJ9bOrKkPVDcrZ-Ps9A1EdqlzDSioM50CGB1NgbTotEmSqdGP3ONxhb7hOXZNTOg-5b3j16I0Bt0XIid6VxhuBmZcsejW0hCS-Fk6FFNnAx9Qy9nxGd31kmWUG4OwFT2a32WPF4fVcR_6VT0hcY02PKDv7EbVB9M3arUWAYRBp6C-LeIdRwFnz3TgIxHUiu63mtlatxXqdU"/>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Marta González</h3>
+<p class="text-label-sm text-on-surface-variant">Ayer a las 14:30</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-amber-500">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-lg leading-relaxed">
+                    ¡El pan de masa madre es simplemente espectacular! Se nota la calidad de los ingredientes y el cariño con el que hornean. Además, la atención de Juan fue muy amable. Sin duda, mi nueva panadería favorita en el barrio.
+                </p>
+<!-- Response Area -->
+<div class="mt-md pt-md border-t border-outline-variant/20">
+<label class="block text-label-sm font-bold text-primary mb-xs">Responder a Marta</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none min-h-[100px] resize-none placeholder:text-on-surface-variant/50" placeholder="Escribe tu agradecimiento aquí..."></textarea>
+<div class="flex justify-end mt-sm">
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-sm shadow-md hover:bg-primary-container transition-all active:scale-95 flex items-center gap-xs">
+                            Publicar respuesta
+                            <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Review Card 2: Already Responded -->
+<article class="bg-surface-container-lowest p-md rounded-xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.04),0_4px_6px_-2px_rgba(0,107,44,0.02)] border border-outline-variant/20 opacity-95">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-md">
+<img alt="Avatar Vecino" class="w-12 h-12 rounded-full bg-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5-9BDpiBJZVllr1voj4kM0Yw9dhLmf3KZ0ueRB3xWyXl18Z9stsMq4QKZD-Ph8fWRpHDsGru_1XG_tEGbyOOR4wUQAm_cZU_CrFxp2X6KjwXARj_XSuUBbd66ZqGku4Jq01zF7Xzrn_odqmqbzMr8fJJMHAvfdp9BgInAK3g6bccN1Z1DLtznXja_JxHtEn9X7IbgSshUeuKeNYS28drwHwxUmW9HnJYN9zIHtUtFuNyN1FR4cLbiMljECk9LITxWRDKPY9aFbZI"/>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Ricardo Ruiz</h3>
+<p class="text-label-sm text-on-surface-variant">Hace 3 días</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-amber-500">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-slate-300">star</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md italic">
+                    "Las medialunas estaban un poco frías, pero el sabor es excelente. Volveré por las tardes cuando saquen la tanda nueva."
+                </p>
+<!-- Saved Response -->
+<div class="bg-primary/5 border-l-4 border-primary p-md rounded-r-lg relative group">
+<div class="flex justify-between items-center mb-xs">
+<span class="text-label-sm font-bold text-primary">Tu respuesta</span>
+<button class="text-primary hover:bg-primary/10 px-sm py-xs rounded-full transition-colors flex items-center gap-xs text-[12px] font-bold">
+<span class="material-symbols-outlined text-sm">edit</span>
+                            Editar respuesta
+                        </button>
+</div>
+<p class="font-body-md text-on-surface">
+                        ¡Hola Ricardo! Muchas gracias por el comentario. Lamentamos que las medialunas no estuvieran a la temperatura ideal. Te esperamos por la tarde, ¡salen calentitas a las 17:00! Saludos.
+                    </p>
+</div>
+</article>
+<!-- Review Card 3: Photo Review -->
+<article class="bg-surface-container-lowest p-md rounded-xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.04),0_4px_6px_-2px_rgba(0,107,44,0.02)] border border-outline-variant/20">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-md">
+<img alt="Avatar Vecino" class="w-12 h-12 rounded-full bg-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD16o0NcA7nqsQjSx9_KFgS6QDASTe2vRIg49iJtSwd8MhOSoAwH_-oilNWLTSzDSHRwtoLsSTAoTqfM9zPYYL6IgAjqL4AaW28i9ImI76WetiptKaREPR3wr-F5JrMj2c5xhQ5cGgpltJtVvetzmKLmg5guk24zrd2LithxgX5AvMRsy1I3zAtsE82WAMD3UtWsT6QhjQjk4VndhZ7WTVJwVSg8fLU_htiv1cKiGzGpkI3ax7PcPuZaiNU2gWBl8orub2XEg0iOkE"/>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Sofía Méndez</h3>
+<p class="text-label-sm text-on-surface-variant">Hace 1 semana</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-amber-500">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md">
+                    Los cruasanes son de otro planeta. Recomiendo el de almendras.
+                </p>
+<div class="flex gap-xs mb-lg overflow-x-auto pb-xs">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of a golden, flaky almond croissant on a white ceramic plate. The lighting is warm and natural, coming from a nearby bakery window, creating soft shadows and highlighting the texture of the powdered sugar. The overall mood is artisanal and appetizing, reflecting a modern boutique bakery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCehLYfXmqFukdUppKa4Qy1OtEVCIwD2u7VLlxdRYTc-h5kiaTmWULsWdmcfdU1N_4IoaCRT5ZX7t1tlyKh1Z0lB1eCJSVv9p0MUwAJ9Cp4gFq7t5HRRu6rfWEHfz-oEsuUU_6Yb-IfFSE4YDTwHrZOdEmPHWSxP59DY-_taM9XYPOwQJqRZLqoP9seHdYnyK0vcsQ6oifcNHG-OlUTyUGOBl7X8RyruXx4ayv6YjIglTSuO_yLK4OhBAhfDl-a3mh08GmPOOV15xw"/>
+</div>
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Interior of a cozy, modern neighborhood bakery featuring wooden display shelves filled with freshly baked bread. The scene is bathed in a bright, clean morning light that emphasizes the white-tiled walls and emerald green accents. The atmosphere is warm, inviting, and professional, characteristic of a high-end local business directory app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKmClLjc7yzRdd1PGrhqQdGZQEx6JPfdJMZgOWDObManm0F09GIQy10uCzf_CWN0SS_oKqYWfmwSO4dozQkGL3NQnpTOTV28s8rH6vQw8GQ5MhcoMDRVjSSJ0c91dQPa5JwUp2tQzewtxVHgsCtZf8dyxcUM1rWAXaG-hwIxoV2iDNgFJKepvBmfenA0PaGVZ7bCyhBrslNB29GW3pRYvFkswbZQlgRiVg32JmZE22qyPal1c6aDuYbMKCh69QAkO6N9DP3WSLaOc"/>
+</div>
+</div>
+<div class="mt-md pt-md border-t border-outline-variant/20">
+<button class="w-full py-sm border border-primary text-primary hover:bg-primary/5 rounded-lg font-label-sm transition-all flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-sm">chat</span>
+                        Responder
+                    </button>
+</div>
+</article>
+</section>
+<!-- Pagination -->
+<div class="mt-xl flex justify-center items-center gap-xs">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-on-primary font-bold shadow-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Mobile Navigation: BottomNavBar -->
+<nav class="fixed md:hidden bottom-0 w-full flex justify-around items-center px-2 py-3 bg-white border-t border-slate-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50 rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-semibold font-['Plus_Jakarta_Sans']">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="text-[10px] font-semibold font-['Plus_Jakarta_Sans']">Categorías</span>
+</a>
+<!-- ACTIVE TAB: Barrio (Closest semantic match for dashboard/management) -->
+<a class="flex flex-col items-center justify-center bg-emerald-50 text-emerald-700 rounded-xl px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="text-[10px] font-semibold font-['Plus_Jakarta_Sans']">Barrio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-semibold font-['Plus_Jakarta_Sans']">Perfil</span>
+</a>
+</nav>
+</body></html>

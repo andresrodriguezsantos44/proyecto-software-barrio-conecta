@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-fixed-variant": "#003ea8",
+                "tertiary-container": "#c74668",
+                "background": "#f4fcf0",
+                "surface-dim": "#d5dcd1",
+                "on-tertiary": "#ffffff",
+                "outline-variant": "#bdcaba",
+                "on-error": "#ffffff",
+                "surface": "#f4fcf0",
+                "surface-bright": "#f4fcf0",
+                "secondary": "#0051d5",
+                "surface-container": "#e9f0e5",
+                "on-primary-fixed": "#002109",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#fefcff",
+                "inverse-primary": "#62df7d",
+                "on-tertiary-fixed-variant": "#8a143c",
+                "on-primary-container": "#f7fff2",
+                "secondary-fixed-dim": "#b4c5ff",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed": "#00174b",
+                "secondary-container": "#316bf3",
+                "error": "#ba1a1a",
+                "on-surface": "#171d16",
+                "primary": "#006b2c",
+                "primary-container": "#00873a",
+                "surface-container-highest": "#dde5d9",
+                "on-tertiary-fixed": "#3f0016",
+                "primary-fixed-dim": "#62df7d",
+                "on-error-container": "#93000a",
+                "tertiary": "#a72d51",
+                "tertiary-fixed": "#ffd9de",
+                "tertiary-fixed-dim": "#ffb2bf",
+                "on-tertiary-container": "#fffbff",
+                "surface-container-high": "#e3eadf",
+                "surface-container-low": "#eff6ea",
+                "on-surface-variant": "#3e4a3d",
+                "on-primary-fixed-variant": "#005320",
+                "secondary-fixed": "#dbe1ff",
+                "outline": "#6e7b6c",
+                "on-secondary": "#ffffff",
+                "surface-tint": "#006e2d",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#2b322b",
+                "inverse-on-surface": "#ecf3e7",
+                "primary-fixed": "#7ffc97",
+                "on-background": "#171d16",
+                "surface-variant": "#dde5d9"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-max": "1280px",
+                "base": "4px",
+                "lg": "32px",
+                "sm": "16px",
+                "md": "24px",
+                "xs": "8px",
+                "xl": "48px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "body-lg": ["Inter"],
+                "display-xl": ["Plus Jakarta Sans"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .ambient-elevation {
+            box-shadow: 0 10px 15px -3px rgba(0, 107, 44, 0.05), 0 4px 6px -2px rgba(0, 107, 44, 0.03);
+        }
+        .login-canvas {
+            background-image: radial-gradient(circle at 2px 2px, #bdcaba 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-md login-canvas">
+<!-- Primary Login Container -->
+<main class="w-full max-w-[440px] flex flex-col items-center">
+<!-- Brand Identity Header -->
+<div class="mb-xl text-center">
+<h1 class="font-headline-lg text-primary tracking-tight mb-xs">BarrioConecta</h1>
+<p class="text-on-surface-variant font-body-md opacity-80">Conecta con tu comunidad local</p>
+</div>
+<!-- Login Card -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-lg ambient-elevation border border-outline-variant/30 relative overflow-hidden">
+<!-- Abstract background shape for visual interest -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<h2 class="font-headline-md text-on-surface mb-lg">Bienvenido de nuevo</h2>
+<form class="space-y-md">
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant block ml-1" for="email">Correo electrónico</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="mail">mail</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-on-surface font-body-md" id="email" placeholder="ejemplo@correo.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-sm text-on-surface-variant block" for="password">Contraseña</label>
+<a class="text-[12px] font-semibold text-secondary hover:underline transition-all" href="#">Olvidé mi contraseña</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="lock">lock</span>
+<input class="w-full pl-12 pr-12 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-on-surface font-body-md" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Button -->
+<div class="pt-sm">
+<button class="w-full py-4 bg-primary text-on-primary font-headline-md text-base rounded-lg shadow-md hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-xs group" type="submit">
+                            Iniciar sesión
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Divider -->
+<div class="relative my-lg">
+<div class="absolute inset-0 flex items-center">
+<span class="w-full border-t border-outline-variant"></span>
+</div>
+<div class="relative flex justify-center text-label-sm">
+<span class="px-sm bg-surface-container-lowest text-on-surface-variant font-medium">O continúa con</span>
+</div>
+</div>
+<!-- Social Options -->
+<div class="grid grid-cols-2 gap-sm">
+<button class="flex items-center justify-center gap-xs py-2.5 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors active:scale-95">
+<img alt="Google Logo" class="w-5 h-5" data-alt="The official Google 'G' icon represented as a clean, multi-colored vector logo on a white background. The logo uses the signature Google colors of blue, red, yellow, and green in a minimalist digital graphic style that conveys modern tech accessibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeKuteIcPBZdAAUrqVmWw51cawZogBJmJ8IJXUC2LF6XPF3Yt_ldg90KJvOqbo9BNbqCz9Nw2dD7Z4oplau5QoXaN7ieGM9zCs8oLCxiEl4efSCCSqWzC7TubGYz_fgZYLlPvRFSgH1kLX52B8vB_KhU24md-v1nYrEbHHQzitWvrvUrFSG_mzs1soUJkr5G13OHn-P-MhZQ_drtVn6TFXV_JMuzsNeLuKMYUyIXIxpm__2YZC7t3maIjO9Q4UzY3hxTBXEgujG7I"/>
+<span class="font-label-sm text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-xs py-2.5 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[#1877F2]" data-icon="facebook" style="font-variation-settings: 'FILL' 1;">social_leaderboard</span>
+<span class="font-label-sm text-on-surface">Facebook</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Footer Link -->
+<p class="mt-lg text-on-surface-variant font-body-md text-center">
+            ¿Aún no eres parte del barrio? 
+            <a class="text-primary font-bold hover:underline ml-xs" href="#">Crear cuenta</a>
+</p>
+<!-- Language Selector / Footer Links -->
+<footer class="mt-xl flex gap-md opacity-60 text-[12px] font-medium text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+<a class="hover:text-primary transition-colors" href="#">Términos</a>
+<a class="hover:text-primary transition-colors" href="#">Soporte</a>
+</footer>
+</main>
+<!-- Contextual Aesthetic Background Image (Suppressed Nav, prioritizing focused canvas) -->
+<div class="fixed bottom-0 right-0 w-full h-full -z-10 pointer-events-none overflow-hidden opacity-[0.03]">
+<img class="absolute -bottom-20 -right-20 w-[600px] grayscale" data-alt="A highly detailed, minimalist architectural sketch of a cozy neighborhood street with local storefronts, trees, and walking paths. The illustration is rendered in clean, thin black lines on a textured off-white background, creating a professional and neighborly atmosphere. The lighting is soft and flat, maintaining a bright light-mode aesthetic that evokes a sense of community and digital proximity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeoVYUuZKL4odB4HTRjuJAulFY7uevGtLah6XLxcKWMyYF_XAXAXl_Dsaqd-IRO8c5W1BUHgJ5w2l0N0qjSTGY7xgGDiAtqX4B7TZOSeF-5j203783fRS7rKvWVmeKhi4bk3LJ_T1RwW5l5H515V4NfvVjPyw1ewa9OhAx3uRzyAo7Z3068CD4wUAXyJpnNb4cydPpMHPckn57FN0KAF9iOiF4EFYy7UUEfvz1kV1v1NDhmiZpXblFqGVlRYG-4uRzy4__716G38"/>
+</div>
+</body></html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-container": "#c74668",
+                        "background": "#f4fcf0",
+                        "surface-dim": "#d5dcd1",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#bdcaba",
+                        "on-error": "#ffffff",
+                        "surface": "#f4fcf0",
+                        "surface-bright": "#f4fcf0",
+                        "secondary": "#0051d5",
+                        "surface-container": "#e9f0e5",
+                        "on-primary-fixed": "#002109",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-primary": "#62df7d",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-container": "#f7fff2",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00174b",
+                        "secondary-container": "#316bf3",
+                        "error": "#ba1a1a",
+                        "on-surface": "#171d16",
+                        "primary": "#006b2c",
+                        "primary-container": "#00873a",
+                        "surface-container-highest": "#dde5d9",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a72d51",
+                        "tertiary-fixed": "#ffd9de",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-high": "#e3eadf",
+                        "surface-container-low": "#eff6ea",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed": "#dbe1ff",
+                        "outline": "#6e7b6c",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2b322b",
+                        "inverse-on-surface": "#ecf3e7",
+                        "primary-fixed": "#7ffc97",
+                        "on-background": "#171d16",
+                        "surface-variant": "#dde5d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm">
+<div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto w-full">
+<div class="text-xl font-extrabold tracking-tight text-emerald-700 font-display-xl">BarrioConecta</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-emerald-700 font-bold border-b-2 border-emerald-600 pb-1" href="#">Explorar</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-slate-600 hover:text-emerald-500 transition-colors" href="#">Categorías</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-slate-600 hover:text-emerald-500 transition-colors" href="#">Soy comerciante</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-sm active:scale-95 transition-transform duration-200">
+                Iniciar Sesión
+            </button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 md:px-6 py-8 pb-32">
+<!-- Hero Gallery Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[400px] md:h-[500px] mb-8">
+<div class="lg:col-span-8 relative overflow-hidden rounded-3xl shadow-lg">
+<img alt="Panadería El Trigal Main View" class="w-full h-full object-cover" data-alt="A warm and inviting artisanal bakery interior at sunrise, with golden morning light filtering through large windows. Shelves are stacked with freshly baked crusty sourdough bread and golden croissants. The atmosphere is cozy and professional, using a soft emerald and cream color palette to reflect a clean modern corporate humanist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3aTXLXOwH_wYO_ZpiZYOPIUXq03x6Dh9B2pDF80Dq3oCBtgEIJQUkVm-pgff5XRDS6gjTIjBL9puyMce7V_7Z-T_BXknsjSA5vWQcvWIjNE_OuUE2pW6hAqSpA037FkrTHQdmSA3Sf0bIY3ynjaJPYmL-u3S8Nrgcf-jkCwMRVJcWbVvq4nmKBArrbGWSncu9Z_u3Ng8doElTY1E-gMllTFMWryzU8eaabCg_0jolgbiPlP4KfQ970eoVdl_HtFywENkCSe5-keM"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Verificado
+                    </span>
+</div>
+</div>
+<div class="lg:col-span-4 grid grid-rows-2 gap-4 hidden lg:grid">
+<div class="overflow-hidden rounded-3xl shadow-sm">
+<img alt="Pastries Gallery" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Close-up shot of various artisanal pastries and desserts arranged neatly on a marble counter in a modern bakery. The lighting is bright and airy, emphasizing the textures of the flaky crusts. The aesthetic is sophisticated yet accessible, maintaining the brand's trustworthy and friendly vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJH_0Octf9Rb-PVkcQE2z8PbwzlGTlcjHacM4MzV48ko6pM6A1WcRQkR8wjQdEAJm1QhZKIoxhPOJeNC1OsK4PoEB_p2yV27vEsZPBzC1ijaCUnCKdl1nlBE1nMbAU1B3JGP2-aAQhVqh2BSLWC_9RADDnfBR5aOY4gCu9zgO1ttXxIstQDoIHWqX9FLoslK4fSheIr8qfO6YEjqNDYvWvIbBT89t9F7JVn5YX1CVq2txZGozimhLRJYSKA_tntxFELBOY0iw3ig4"/>
+</div>
+<div class="overflow-hidden rounded-3xl shadow-sm relative">
+<img alt="Baker in action" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A smiling baker in a clean green apron working in a modern, open-concept kitchen. Soft natural light creates a welcoming neighborhood feel. The background is slightly blurred, focusing on the human element of the local business, aligning with the humanist digital proximity design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKF4mPvBpUOrl7qBx6fdzTzDyy2GZrAUPh9pwv_qhSP656qC-sZE3lxefgBLmTPOx3hc58fVLoeEGoJjyUxh6VDiVy3kX4KbecAEM32UUryZObvyckdwzQmlp8fiRD_hdl7RNlxr-xu_V7Bc5LtXiuy1ksumliq0tm1PT-F9DvxDfwXyegObn-0lR8hyFajKuJ_aYit_cF_vykEAgmv6uThi6rmSDdwfKPoTOraDlxAikBoTyZ4j3_Xevnfwwpo6r3paJfOhVDw3A"/>
+<button class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-headline-md backdrop-blur-[2px] transition-all hover:bg-black/20">
+                        +12 Fotos
+                    </button>
+</div>
+</div>
+</section>
+<!-- Business Identity Header -->
+<section class="mb-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-medium">Gastronomía</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-amber-500" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.7</span>
+<span class="text-label-sm">(28 reseñas)</span>
+</div>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-2">Panadería El Trigal</h1>
+<div class="flex flex-wrap items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+<span class="font-body-md">350m de tu ubicación</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+<span>Abierto ahora</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-2xl font-label-sm shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="near_me">near_me</span>
+                        Cómo llegar
+                    </button>
+<button class="flex items-center justify-center w-12 h-12 rounded-2xl border-2 border-outline-variant text-outline hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+<button class="flex items-center justify-center w-12 h-12 rounded-2xl border-2 border-outline-variant text-outline hover:bg-error-container hover:text-error hover:border-error transition-colors">
+<span class="material-symbols-outlined" data-icon="flag">flag</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Content Grid: Bento Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Info & Description -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Description Card -->
+<div class="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100">
+<h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2">
+<span class="w-8 h-1 bg-primary rounded-full"></span>
+                        Sobre nosotros
+                    </h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed mb-6">
+                        En El Trigal, horneamos tradición cada mañana. Somos una panadería artesanal con más de 15 años en el barrio, especializada en pan de masa madre, facturas tradicionales y cafetería de especialidad. Utilizamos solo ingredientes locales para garantizar el sabor más fresco a nuestros vecinos.
+                    </p>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="p-4 bg-surface-container rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="bakery_dining">bakery_dining</span>
+<div class="text-label-sm text-on-surface-variant">Artesanal</div>
+</div>
+<div class="p-4 bg-surface-container rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="coffee">coffee</span>
+<div class="text-label-sm text-on-surface-variant">Cafetería</div>
+</div>
+<div class="p-4 bg-surface-container rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="wifi">wifi</span>
+<div class="text-label-sm text-on-surface-variant">Wifi Gratis</div>
+</div>
+</div>
+</div>
+<!-- Reviews Section -->
+<div class="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-md text-headline-md">Reseñas de la comunidad</h2>
+<div class="text-right">
+<div class="text-display-xl leading-none text-on-surface">4.7</div>
+<div class="flex justify-end text-amber-500">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star_half" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+</div>
+<!-- Review Form -->
+<div class="bg-surface-container-low p-6 rounded-2xl mb-10 border border-outline-variant/30">
+<h3 class="font-headline-md text-[18px] mb-4">¿Visitaste este lugar? Danos tu opinión</h3>
+<div class="flex gap-2 mb-4">
+<button class="material-symbols-outlined text-slate-300 hover:text-amber-500 transition-colors" data-icon="star">star</button>
+<button class="material-symbols-outlined text-slate-300 hover:text-amber-500 transition-colors" data-icon="star">star</button>
+<button class="material-symbols-outlined text-slate-300 hover:text-amber-500 transition-colors" data-icon="star">star</button>
+<button class="material-symbols-outlined text-slate-300 hover:text-amber-500 transition-colors" data-icon="star">star</button>
+<button class="material-symbols-outlined text-slate-300 hover:text-amber-500 transition-colors" data-icon="star">star</button>
+</div>
+<textarea class="w-full bg-white border-outline-variant rounded-xl p-4 text-body-md focus:ring-primary focus:border-primary mb-4" placeholder="Cuéntale a tus vecinos qué tal fue tu experiencia..." rows="3"></textarea>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-sm active:scale-95 transition-transform">
+                            Publicar reseña
+                        </button>
+</div>
+<!-- Reviews List -->
+<div class="space-y-8">
+<!-- Review 1 -->
+<div class="pb-8 border-b border-slate-100 last:border-0">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">MR</div>
+<div>
+<div class="font-bold text-on-surface">Mariana Rodriguez</div>
+<div class="text-[12px] text-on-surface-variant">Hace 2 días</div>
+</div>
+</div>
+<div class="flex text-amber-500 text-[16px]">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant mb-4">El pan de masa madre es simplemente increíble. Siempre lo pido bien tostado. El ambiente es super tranquilo para trabajar un rato.</p>
+<!-- Owner Response -->
+<div class="ml-10 p-4 bg-surface-container rounded-2xl border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="storefront">storefront</span>
+<span class="text-label-sm font-bold text-primary">Respuesta de Panadería El Trigal</span>
+</div>
+<p class="text-[14px] text-on-surface-variant">¡Muchas gracias Mariana! Nos alegra mucho que disfrutes de nuestro pan. Te esperamos pronto.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & Map -->
+<div class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+<!-- Location & Contact -->
+<div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
+<h3 class="font-headline-md text-[20px] mb-6">Ubicación y Contacto</h3>
+<div class="w-full h-48 rounded-2xl overflow-hidden mb-6 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Map location" class="w-full h-full object-cover" data-alt="A clean, minimalist overhead map view of a vibrant neighborhood grid. The map is styled with soft emerald accents for green spaces and clear typography for street names, reflecting a modern digital proximity design system. A primary green pin marks the specific location of the business." data-location="Buenos Aires" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqNqCJQIXCqGUj2ZxtDZ7eol51p4cwWb7Z9_CeHrbtELyPLVHkDPuCNvAyBVh-1_cee_TK-4jc2ruZDWJrQnAJpD_fNNVJNDLuGVpfFKpRzBa8c2asjpBQvQBGJPiTEO2nvKLDGmorgqpSKzF0D-3CcPcCXoiABmq0_HZUohG2DqZxq9irPBm0QhkgEXLxlr9-r3-YH_yzn1dpK4-slT5kUpWZekB1JxtkjzM8v4yEScwBiPawZpF7OXx5ViTEqDyG3y45ZHRqPl0"/>
+</div>
+<div class="space-y-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div class="text-body-md text-on-surface-variant">Calle Falsa 123, Barrio Norte</div>
+</div>
+<div class="flex gap-3 items-center">
+<span class="material-symbols-outlined text-primary" data-icon="phone">phone</span>
+<div class="text-body-md text-on-surface-variant">+54 11 4444-5555</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white py-3 rounded-2xl font-bold active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                            WhatsApp Directo
+                        </button>
+</div>
+</div>
+<!-- Business Hours -->
+<div class="bg-white p-6 rounded-[32px] shadow-sm border border-slate-100">
+<h3 class="font-headline-md text-[20px] mb-4">Horarios</h3>
+<div class="space-y-3">
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50 font-semibold text-primary">
+<span>Lunes</span>
+<span>07:30 - 20:30</span>
+</div>
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50">
+<span>Martes</span>
+<span>07:30 - 20:30</span>
+</div>
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50">
+<span>Miércoles</span>
+<span>07:30 - 20:30</span>
+</div>
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50">
+<span>Jueves</span>
+<span>07:30 - 20:30</span>
+</div>
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50">
+<span>Viernes</span>
+<span>07:30 - 21:00</span>
+</div>
+<div class="flex justify-between text-body-md py-1 border-b border-slate-50 text-tertiary">
+<span>Sábado</span>
+<span>08:30 - 14:00</span>
+</div>
+<div class="flex justify-between text-body-md py-1 text-on-surface-variant/40">
+<span>Domingo</span>
+<span>Cerrado</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center px-2 py-3 bg-white border-t border-slate-200 z-50 rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-emerald-50 text-emerald-700 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Categorías</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Barrio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Perfil</span>
+</div>
+</nav>
+</body></html>

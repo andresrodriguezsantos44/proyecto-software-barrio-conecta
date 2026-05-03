@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-container": "#c74668",
+                        "background": "#f4fcf0",
+                        "surface-dim": "#d5dcd1",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#bdcaba",
+                        "on-error": "#ffffff",
+                        "surface": "#f4fcf0",
+                        "surface-bright": "#f4fcf0",
+                        "secondary": "#0051d5",
+                        "surface-container": "#e9f0e5",
+                        "on-primary-fixed": "#002109",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-primary": "#62df7d",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-container": "#f7fff2",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00174b",
+                        "secondary-container": "#316bf3",
+                        "error": "#ba1a1a",
+                        "on-surface": "#171d16",
+                        "primary": "#006b2c",
+                        "primary-container": "#00873a",
+                        "surface-container-highest": "#dde5d9",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#a72d51",
+                        "tertiary-fixed": "#ffd9de",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-high": "#e3eadf",
+                        "surface-container-low": "#eff6ea",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed": "#dbe1ff",
+                        "outline": "#6e7b6c",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2b322b",
+                        "inverse-on-surface": "#ecf3e7",
+                        "primary-fixed": "#7ffc97",
+                        "on-background": "#171d16",
+                        "surface-variant": "#dde5d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex flex-col p-4 space-y-2 z-40 hidden md:flex">
+<div class="mb-8 px-4">
+<h1 class="text-lg font-bold text-emerald-700 dark:text-emerald-400 font-headline-md">BarrioConecta</h1>
+<p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Panel de Gesti\u00f3n</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-sm rounded-lg px-4 py-3 font-semibold transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Mi Negocio</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Rese\u00f1as</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">M\u00e9tricas</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Moderaci\u00f3n</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<button class="w-full bg-emerald-600 text-white rounded-xl py-3 px-4 font-semibold text-sm mb-4 active:scale-95 transition-transform">
+                Nuevo Anuncio
+            </button>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Configuraci\u00f3n</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1 text-red-500" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Cerrar Sesi\u00f3n</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto w-full">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-on-surface">Notificaciones</h2>
+<span class="bg-primary-container text-on-primary-container text-[12px] px-2 py-0.5 rounded-full font-bold">3 nuevas</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary font-label-sm hover:underline transition-colors active:scale-95">
+                        Marcar todas como leídas
+                    </button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="h-full w-full object-cover" data-alt="A professional headshot of a small business owner in a bright, modern office setting. The person is smiling confidently, dressed in business casual attire. The background is softly blurred with warm wooden textures and green plants, maintaining a friendly and trustworthy professional atmosphere aligned with a light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATzOFlaA-5uyJG3gAEbZ_cJtbKkIebxBZJVcE8th2Ua5vG_ejr5WSK9Rj2YJd4FtIdm4c08RYM-1BrhpalqNOxMSp99NPQnGbyYI2pBTcdg-NVPdasg6Y7utXzgZuqV1_83j9ZNfl5oy5ibdW0iBwi7_cbXSzA88VLAioIqvF6VRFws5zybTfOco_YLfDM0wVAB8cfh4i1gtMzi9bCbs7Hl4s2o6CfAfehwBPr8h0f3HkFQguzAtoO9Lwv3BuyanpOKMzds2WO5Ho"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-6 md:p-10 max-w-5xl mx-auto w-full flex-grow pb-24 md:pb-10">
+<!-- Notification Filters (Bento Style Sub-header) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<button class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-emerald-100 flex flex-col items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">all_inbox</span>
+<span class="text-xs font-bold text-on-surface">Todas</span>
+</button>
+<button class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-transparent hover:border-emerald-100 flex flex-col items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-slate-400">star</span>
+<span class="text-xs font-bold text-slate-500">Reseñas</span>
+</button>
+<button class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-transparent hover:border-emerald-100 flex flex-col items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-slate-400">verified_user</span>
+<span class="text-xs font-bold text-slate-500">Sistema</span>
+</button>
+<button class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-transparent hover:border-emerald-100 flex flex-col items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-slate-400">warning</span>
+<span class="text-xs font-bold text-slate-500">Alertas</span>
+</button>
+</div>
+<!-- Notifications List -->
+<div class="space-y-4">
+<!-- Unread Notification -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] border-l-4 border-emerald-500 flex gap-4 items-start relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2">
+<div class="h-2 w-2 rounded-full bg-emerald-500"></div>
+</div>
+<div class="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-600" data-weight="fill">chat_bubble</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-base text-on-surface">Nueva reseña recibida</h3>
+<span class="text-[12px] text-slate-400 font-medium">Hace 5 min</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+                            "La Cafetería de la Esquina" ha recibido un comentario de 5 estrellas de Carlos R.: "Excelente servicio y el café es increíble".
+                        </p>
+<div class="flex gap-2">
+<button class="text-xs font-bold bg-primary text-white px-4 py-2 rounded-lg hover:brightness-110 transition-all active:scale-95">Ver Reseña</button>
+<button class="text-xs font-bold text-slate-500 px-4 py-2 rounded-lg hover:bg-slate-50 transition-all">Descartar</button>
+</div>
+</div>
+</div>
+<!-- Unread Notification 2 -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] border-l-4 border-emerald-500 flex gap-4 items-start relative">
+<div class="absolute top-0 right-0 p-2">
+<div class="h-2 w-2 rounded-full bg-emerald-500"></div>
+</div>
+<div class="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-600" data-weight="fill">verified</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-base text-on-surface">Perfil aprobado</h3>
+<span class="text-[12px] text-slate-400 font-medium">Hace 2 horas</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            ¡Buenas noticias! Tu solicitud de verificación para "La Cafetería de la Esquina" ha sido procesada con éxito. Ahora apareces como negocio verificado.
+                        </p>
+</div>
+</div>
+<!-- Critical/Warning Notification -->
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] border-l-4 border-tertiary flex gap-4 items-start">
+<div class="h-12 w-12 rounded-xl bg-tertiary-fixed-dim/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-weight="fill">report</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-base text-on-surface">Reporte recibido</h3>
+<span class="text-[12px] text-slate-400 font-medium">Ayer</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+                            Un usuario ha reportado que la información de horario de tu negocio está desactualizada. Por favor, revisa tus detalles.
+                        </p>
+<button class="text-xs font-bold text-tertiary border border-tertiary px-4 py-2 rounded-lg hover:bg-tertiary hover:text-white transition-all active:scale-95">Actualizar Horario</button>
+</div>
+</div>
+<!-- Read Notification -->
+<div class="bg-slate-50/50 dark:bg-slate-800/30 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 flex gap-4 items-start opacity-75">
+<div class="h-12 w-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400">analytics</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-base text-slate-500">Métricas semanales</h3>
+<span class="text-[12px] text-slate-400 font-medium">2 días</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            Tu resumen semanal de actividad ya está disponible. Has tenido un incremento del 15% en visualizaciones de perfil.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Empty State Illustration Placeholder (Subtle) -->
+<div class="mt-16 flex flex-col items-center justify-center text-center px-6">
+<div class="h-32 w-32 mb-4 opacity-20">
+<svg class="text-emerald-700" fill="none" viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="100" r="80" stroke="currentColor" stroke-dasharray="8 8" stroke-width="2"></circle>
+<path d="M70 100L90 120L130 80" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+</svg>
+</div>
+<p class="text-slate-400 text-sm font-medium">Estás al día con todas tus notificaciones.</p>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center px-2 py-3 bg-white dark:bg-slate-900 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] border-t border-slate-200 dark:border-slate-800 z-50 rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Categor\u00edas</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Barrio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Perfil</span>
+</a>
+</nav>
+</body></html>

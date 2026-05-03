@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BarrioConecta - Dashboard Administrativo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#c74668",
+                    "background": "#f4fcf0",
+                    "surface-dim": "#d5dcd1",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bdcaba",
+                    "on-error": "#ffffff",
+                    "surface": "#f4fcf0",
+                    "surface-bright": "#f4fcf0",
+                    "secondary": "#0051d5",
+                    "surface-container": "#e9f0e5",
+                    "on-primary-fixed": "#002109",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-primary": "#62df7d",
+                    "on-tertiary-fixed-variant": "#8a143c",
+                    "on-primary-container": "#f7fff2",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#00174b",
+                    "secondary-container": "#316bf3",
+                    "error": "#ba1a1a",
+                    "on-surface": "#171d16",
+                    "primary": "#006b2c",
+                    "primary-container": "#00873a",
+                    "surface-container-highest": "#dde5d9",
+                    "on-tertiary-fixed": "#3f0016",
+                    "primary-fixed-dim": "#62df7d",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#a72d51",
+                    "tertiary-fixed": "#ffd9de",
+                    "tertiary-fixed-dim": "#ffb2bf",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-container-high": "#e3eadf",
+                    "surface-container-low": "#eff6ea",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-primary-fixed-variant": "#005320",
+                    "secondary-fixed": "#dbe1ff",
+                    "outline": "#6e7b6c",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#006e2d",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2b322b",
+                    "inverse-on-surface": "#ecf3e7",
+                    "primary-fixed": "#7ffc97",
+                    "on-background": "#171d16",
+                    "surface-variant": "#dde5d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "base": "4px",
+                    "lg": "32px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "xl": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f4fcf0;
+            color: #171d16;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<!-- Sidebar Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 z-40 hidden md:flex flex-col p-4 space-y-2">
+<div class="mb-8 px-4 py-2">
+<h1 class="text-lg font-bold text-emerald-700 dark:text-emerald-400 font-['Plus_Jakarta_Sans']">BarrioConecta</h1>
+<p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Panel Administrativo</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-sm rounded-lg px-4 py-3 font-semibold transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Negocios</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="flag">flag</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Reportes</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Usuarios</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Métricas</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Cerrar sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopAppBar Header -->
+<header class="sticky top-0 w-full z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm px-6 py-4">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="font-headline-md text-primary font-extrabold tracking-tight">Dashboard Administrativo</h2>
+<p class="text-on-surface-variant font-body-md opacity-80">Supervisa la actividad y calidad de BarrioConecta</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-outline" data-icon="notifications">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold shadow-sm border-2 border-white">
+                        AD
+                    </div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body Content -->
+<div class="p-6 md:p-8 max-w-7xl mx-auto space-y-8">
+<!-- Quick Actions Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<button class="flex items-center justify-center gap-3 py-4 px-6 bg-primary text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+                    Ver reportes pendientes
+                </button>
+<button class="flex items-center justify-center gap-3 py-4 px-6 bg-secondary text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings_suggest">settings_suggest</span>
+                    Gestionar negocios
+                </button>
+<button class="flex items-center justify-center gap-3 py-4 px-6 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Exportar métricas
+                </button>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+<!-- Metric Card 1 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.05)] border border-slate-100">
+<p class="text-xs font-semibold text-slate-500 uppercase mb-1">Total Usuarios</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-slate-800">12,480</span>
+<span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+12%</span>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.05)] border border-slate-100">
+<p class="text-xs font-semibold text-slate-500 uppercase mb-1">Comerciantes</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-slate-800">842</span>
+<span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+5%</span>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.05)] border border-slate-100">
+<p class="text-xs font-semibold text-slate-500 uppercase mb-1">Negocios Activos</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-slate-800">1,205</span>
+<span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-0.5 rounded-full">Estable</span>
+</div>
+</div>
+<!-- Metric Card 4 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(0,107,44,0.05)] border border-slate-100">
+<p class="text-xs font-semibold text-slate-500 uppercase mb-1">Reseñas Publicadas</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-slate-800">5,930</span>
+<span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+18%</span>
+</div>
+</div>
+<!-- Metric Card 5 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(186,26,26,0.05)] border border-error-container/30">
+<p class="text-xs font-semibold text-error uppercase mb-1">Reportes Pendientes</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-error">24</span>
+<span class="material-symbols-outlined text-error text-xl" data-icon="warning">warning</span>
+</div>
+</div>
+<!-- Metric Card 6 -->
+<div class="bg-white p-5 rounded-2xl shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] border border-slate-100">
+<p class="text-xs font-semibold text-slate-500 uppercase mb-1">Suspendidos</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-extrabold text-slate-800">12</span>
+<span class="text-slate-400 text-xs font-bold bg-slate-50 px-2 py-0.5 rounded-full">Alert</span>
+</div>
+</div>
+</section>
+<!-- Charts Section (Visual Mockups) -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Bar Chart: Negocios por categoría -->
+<div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-slate-800">Negocios por categoría</h3>
+<span class="material-symbols-outlined text-slate-400" data-icon="more_vert">more_vert</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Restaurantes</span>
+<span>420</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-3">
+<div class="bg-primary h-3 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Servicios</span>
+<span>310</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-3">
+<div class="bg-secondary h-3 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Moda y Ropa</span>
+<span>245</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-3">
+<div class="bg-tertiary-container h-3 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Mascotas</span>
+<span>180</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-3">
+<div class="bg-amber-400 h-3 rounded-full" style="width: 35%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Line Chart: Reseñas por semana -->
+<div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 relative overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-slate-800">Reseñas por semana</h3>
+<div class="flex gap-2">
+<span class="text-xs text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded">+24% vs mes anterior</span>
+</div>
+</div>
+<!-- Line Chart Visualization Mockup -->
+<div class="h-48 w-full flex items-end gap-2 px-2">
+<div class="flex-1 bg-emerald-100 rounded-t-lg h-24 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">120</div>
+</div>
+<div class="flex-1 bg-emerald-200 rounded-t-lg h-32 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">145</div>
+</div>
+<div class="flex-1 bg-emerald-300 rounded-t-lg h-40 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">180</div>
+</div>
+<div class="flex-1 bg-emerald-400 rounded-t-lg h-36 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">165</div>
+</div>
+<div class="flex-1 bg-emerald-500 rounded-t-lg h-44 relative group border-t-4 border-emerald-700">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">210</div>
+</div>
+<div class="flex-1 bg-primary rounded-t-lg h-48 relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">235</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-xs font-semibold text-slate-400">
+<span>Sem 1</span>
+<span>Sem 2</span>
+<span>Sem 3</span>
+<span>Sem 4</span>
+<span>Sem 5</span>
+<span>Actual</span>
+</div>
+</div>
+</section>
+<!-- Asymmetric Dashboard Layout Extension: Recent Activity Table -->
+<section class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-slate-800">Solicitudes de negocios recientes</h3>
+<a class="text-primary text-sm font-bold hover:underline" href="#">Ver todas</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-slate-100 text-slate-400 font-semibold text-sm">
+<th class="pb-4">Negocio</th>
+<th class="pb-4">Categoría</th>
+<th class="pb-4">Dueño</th>
+<th class="pb-4">Fecha</th>
+<th class="pb-4">Estado</th>
+<th class="pb-4 text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-emerald-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<span class="font-semibold text-slate-700">La Boulangerie de Barrio</span>
+</div>
+</td>
+<td class="py-4 text-sm text-slate-500">Alimentación</td>
+<td class="py-4 text-sm text-slate-500">Elena G.</td>
+<td class="py-4 text-sm text-slate-500">Hoy, 10:45</td>
+<td class="py-4">
+<span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Pendiente Revisión</span>
+</td>
+<td class="py-4 text-right">
+<button class="text-primary hover:bg-emerald-50 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="content_cut">content_cut</span>
+</div>
+<span class="font-semibold text-slate-700">Estética Urban Style</span>
+</div>
+</td>
+<td class="py-4 text-sm text-slate-500">Cuidado Personal</td>
+<td class="py-4 text-sm text-slate-500">Marcos R.</td>
+<td class="py-4 text-sm text-slate-500">Ayer, 16:20</td>
+<td class="py-4">
+<span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Pendiente Revisión</span>
+</td>
+<td class="py-4 text-right">
+<button class="text-primary hover:bg-emerald-50 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+</div>
+<span class="font-semibold text-slate-700">Pet Happy Spa</span>
+</div>
+</td>
+<td class="py-4 text-sm text-slate-500">Mascotas</td>
+<td class="py-4 text-sm text-slate-500">Sofía P.</td>
+<td class="py-4 text-sm text-slate-500">12 Oct, 09:15</td>
+<td class="py-4">
+<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">En Proceso</span>
+</td>
+<td class="py-4 text-right">
+<button class="text-primary hover:bg-emerald-50 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<div class="pb-24 md:pb-8"></div>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center px-2 py-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Categorías</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Barrio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-semibold">Perfil</span>
+</a>
+</nav>
+</body></html>
