@@ -101,6 +101,11 @@ function openEditForm(biz: { id: string; name: string; description?: string; cat
 }
 
 async function submitBusinessForm(): Promise<void> {
+  // Auto-add pending photo URL if user forgot to click "+"
+  if (newPhotoUrl.value.trim() && formPhotos.value.length < 3) {
+    addPhoto();
+  }
+
   businessV$.value.$touch();
   if (businessV$.value.$invalid) return;
 
@@ -113,7 +118,7 @@ async function submitBusinessForm(): Promise<void> {
       coordinates: [formLng.value, formLat.value],
     },
     schedule: { ...formSchedule },
-    photos: formPhotos.value.length > 0 ? formPhotos.value : undefined,
+    photos: formPhotos.value,
   };
 
   try {
@@ -128,7 +133,7 @@ async function submitBusinessForm(): Promise<void> {
           coordinates: [formLng.value, formLat.value],
         },
         schedule: { ...formSchedule },
-        photos: formPhotos.value.length > 0 ? formPhotos.value : undefined,
+        photos: formPhotos.value,
       };
       await businessStore.updateBusiness(editingBusinessId.value, updatePayload);
     } else {
@@ -406,6 +411,17 @@ onMounted(async () => {
               <span class="text-sm text-gray-500">({{ biz.avgRating.toFixed(1) }})</span>
             </div>
             <p v-if="biz.description" class="mt-2 text-sm text-gray-600">{{ biz.description }}</p>
+
+            <!-- Photos Display -->
+            <div v-if="biz.photos && biz.photos.length > 0" class="mt-4 flex gap-2 overflow-x-auto pb-2">
+              <img 
+                v-for="(photo, idx) in biz.photos" 
+                :key="idx" 
+                :src="photo" 
+                class="w-20 h-20 object-cover rounded-lg border border-gray-200"
+                @error="($event.target as HTMLImageElement).style.display = 'none'"
+              />
+            </div>
           </div>
           <div class="flex gap-2 ml-4">
             <button class="btn-secondary text-sm" @click="openEditForm(biz)">Editar</button>
