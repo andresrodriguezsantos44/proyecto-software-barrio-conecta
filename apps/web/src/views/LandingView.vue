@@ -6,7 +6,6 @@
 import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useCategoriesStore } from '@/stores';
-import CategoryIcon from '@/components/CategoryIcon.vue';
 
 const router = useRouter();
 const route = useRoute();

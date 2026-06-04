@@ -46,74 +46,50 @@ describe('Search Service — computeDistance', () => {
 // Unit: checkIsOpenNow — business schedule checker
 // ---------------------------------------------------------------------------
 describe('Search Service — checkIsOpenNow', () => {
-  // We create mock schedule objects. Since checkIsOpenNow uses `new Date()`,
-  // we test both scenarios: business with today's schedule, and without.
-  const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const;
+  // The clock is INJECTED (deterministic). new Date(2026, 5, 4, h, m) builds a
+  // local-time Thursday (June 4, 2026 → getDay() === 4 → 'thu'), so construction
+  // and reading use the same components regardless of the host timezone.
+  const thuAt = (h: number, m = 0) => new Date(2026, 5, 4, h, m);
+  const businessOpenThu = (open: string, close: string) => ({
+    schedule: { thu: { open, close } },
+  });
 
-  it('should return true when business is currently open', () => {
-    const now = new Date();
-    const dayKey = days[now.getDay()]!;
-    const currentHour = now.getHours();
-
-    // Create schedule where today's hours include the current time
-    const openHour = String(Math.max(0, currentHour - 1)).padStart(2, '0');
-    const closeHour = String(Math.min(23, currentHour + 2)).padStart(2, '0');
-
-    const biz = {
-      schedule: {
-        [dayKey]: { open: `${openHour}:00`, close: `${closeHour}:00` },
-      },
-    };
-
-    const result = checkIsOpenNow(biz);
+  it('should return true when current time is within today’s open window', () => {
+    const result = checkIsOpenNow(businessOpenThu('17:00', '20:00'), thuAt(18, 30));
     expect(result).toBe(true);
   });
 
-  it('should return false when business has no schedule for today', () => {
-    // Create a mock where today is not in the schedule
-    const now = new Date();
-    const todayIdx = now.getDay();
-    // Use a different day
-    const otherDay = days[(todayIdx + 1) % 7]!;
+  it('should return true exactly at the opening minute (inclusive lower bound)', () => {
+    const result = checkIsOpenNow(businessOpenThu('09:00', '18:00'), thuAt(9, 0));
+    expect(result).toBe(true);
+  });
 
-    const biz = {
-      schedule: {
-        [otherDay]: { open: '08:00', close: '18:00' },
-      },
-    };
+  it('should return true exactly at the closing minute (inclusive upper bound)', () => {
+    const result = checkIsOpenNow(businessOpenThu('09:00', '18:00'), thuAt(18, 0));
+    expect(result).toBe(true);
+  });
 
-    const result = checkIsOpenNow(biz);
+  it('should return false before the business opens', () => {
+    const result = checkIsOpenNow(businessOpenThu('09:00', '18:00'), thuAt(6, 0));
+    expect(result).toBe(false);
+  });
+
+  it('should return false after the business has already closed', () => {
+    const result = checkIsOpenNow(businessOpenThu('08:00', '12:00'), thuAt(18, 30));
+    expect(result).toBe(false);
+  });
+
+  it('should return false when there is no schedule for the current day', () => {
+    const biz = { schedule: { fri: { open: '08:00', close: '18:00' } } };
+    const result = checkIsOpenNow(biz, thuAt(12, 0));
     expect(result).toBe(false);
   });
 
   it('should return false for empty schedule', () => {
-    const biz = { schedule: {} };
-    const result = checkIsOpenNow(biz);
-    expect(result).toBe(false);
+    expect(checkIsOpenNow({ schedule: {} }, thuAt(12, 0))).toBe(false);
   });
 
   it('should return false for null schedule', () => {
-    const biz = { schedule: null };
-    const result = checkIsOpenNow(biz);
-    expect(result).toBe(false);
-  });
-
-  it('should return false when business hours are earlier today (already closed)', () => {
-    const now = new Date();
-    const dayKey = days[now.getDay()]!;
-    const earlyHour = String(Math.max(0, now.getHours() - 5)).padStart(2, '0');
-    const pastClose = String(Math.max(0, now.getHours() - 3)).padStart(2, '0');
-
-    const biz = {
-      schedule: {
-        [dayKey]: { open: `${earlyHour}:00`, close: `${pastClose}:00` },
-      },
-    };
-
-    // If close time is before current time, business is closed
-    // Note: business might still be "open" if close hour equals current hour
-    // This test validates the logic runs without error
-    const result = checkIsOpenNow(biz);
-    expect(typeof result).toBe('boolean');
+    expect(checkIsOpenNow({ schedule: null }, thuAt(12, 0))).toBe(false);
   });
 });

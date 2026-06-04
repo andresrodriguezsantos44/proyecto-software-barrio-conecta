@@ -97,10 +97,18 @@ function toRad(deg: number): number {
 /**
  * Check if a business is currently open based on its schedule.
  * Uses the current day of the week and time.
+ *
+ * The reference time is injectable via the `now` parameter (defaults to the
+ * current instant). Injecting the clock keeps callers unchanged while making
+ * the function deterministically testable — a test must never depend on the
+ * wall clock.
+ *
  * Exported for testing.
  */
-export function checkIsOpenNow(biz: BusinessDocument | Record<string, unknown>): boolean {
-  const now = new Date();
+export function checkIsOpenNow(
+  biz: BusinessDocument | Record<string, unknown>,
+  now: Date = new Date(),
+): boolean {
   const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const;
   const dayKey = days[now.getDay()]!;
   const schedule = (biz as Record<string, unknown>).schedule as Record<string, { open: string; close: string }>;

@@ -34,15 +34,26 @@ describe('Config', () => {
     });
 
     it('should use defaults for optional env vars', () => {
+      // Snapshot the optional vars so the assertion holds regardless of the
+      // ambient environment (CI may export JWT_EXPIRES_IN / PORT).
+      const original = {
+        JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN,
+        PORT: process.env.PORT,
+      };
       process.env.JWT_SECRET = 'test-secret-123';
+      delete process.env.JWT_EXPIRES_IN;
+      delete process.env.PORT;
+
       const cfg = buildConfig();
 
-      expect(cfg.port).toBeGreaterThanOrEqual(1);
+      expect(cfg.port).toBe(3000);
       expect(cfg.jwtExpiresIn).toBe('24h');
       expect(cfg.jwtSecret).toBe('test-secret-123');
 
-      // Cleanup
+      // Restore
       delete process.env.JWT_SECRET;
+      if (original.JWT_EXPIRES_IN !== undefined) process.env.JWT_EXPIRES_IN = original.JWT_EXPIRES_IN;
+      if (original.PORT !== undefined) process.env.PORT = original.PORT;
     });
   });
 });
