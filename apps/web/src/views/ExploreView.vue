@@ -1,117 +1,59 @@
 <script setup lang="ts">
 // ============================================================================
-// BarrioConecta — Explore View
-// Map + list with category/radius filters and geolocation prompt.
-// Full MVP implementation per spec GS-01 through GS-03.
+// BarrioConecta — Explore View (Reingeniería — Actividad 6)
+// Vista refactorizada: la lógica de geolocalización, filtros y búsqueda
+// fue extraída a composables y servicios especializados.
+//
+// Antes: ~115 líneas mezclando geolocalización, filtros, búsqueda y navegación.
+// Después: ~20 líneas — la vista solo orquesta la presentación.
+//
+// Composables usados:
+//   - useBusinessSearch  → filtros, búsqueda, navegación, categorías
+//   - useCategoriesStore → lista de categorías disponibles
+//   - useSearchStore     → estado de resultados y loading
 // ============================================================================
-import { ref, onMounted, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { useSearchStore, useCategoriesStore } from '@/stores';
+import { useBusinessSearch } from '@/composables/useBusinessSearch';
+import { RADIUS_OPTIONS } from '@/services/businessSearchService';
 import BusinessCard from '@/components/BusinessCard.vue';
-import type { SearchRadius } from '@barrio-conecta/contracts';
 
 const route = useRoute();
-const router = useRouter();
 const searchStore = useSearchStore();
 const categoriesStore = useCategoriesStore();
 
-const selectedCategoryId = ref<string | null>(null);
-const selectedRadius = ref<SearchRadius>(1000);
-const searchQuery = ref('');
-const locationError = ref<string | null>(null);
-const userLat = ref<number | null>(null);
-const userLng = ref<number | null>(null);
-const isLocating = ref(false);
+const {
+  selectedCategoryId,
+  selectedRadius,
+  searchQuery,
+  isLocating,
+  locationError,
+  effectiveLat,
+  effectiveLng,
+  requestGeolocation,
+  handleSearch,
+  goToBusiness,
+  getCategoryName,
+} = useBusinessSearch();
 
-// Default location (Bogotá center)
-const DEFAULT_LAT = 4.60;
-const DEFAULT_LNG = -74.08;
-
-// Pre-selected category from landing page
+// Inicialización: categorías, query param de landing y geolocalización
 onMounted(() => {
   if (categoriesStore.categories.length === 0) {
     categoriesStore.fetchCategories();
   }
 
-  // Read category from query params (landing page category click)
+  // Categoría pre-seleccionada desde la landing page (click en categoría)
   const queryCategory = route.query.category as string | undefined;
   if (queryCategory) {
     selectedCategoryId.value = queryCategory;
   }
 
-  // Try to get user location
   requestGeolocation();
 });
 
-function requestGeolocation(): void {
-  if (!navigator.geolocation) {
-    locationError.value = 'Tu navegador no soporta geolocalización. Usando ubicación por defecto (Bogotá).';
-    userLat.value = DEFAULT_LAT;
-    userLng.value = DEFAULT_LNG;
-    return;
-  }
-
-  isLocating.value = true;
-  locationError.value = null;
-
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      userLat.value = position.coords.latitude;
-      userLng.value = position.coords.longitude;
-      isLocating.value = false;
-    },
-    (err) => {
-      isLocating.value = false;
-      switch (err.code) {
-        case err.PERMISSION_DENIED:
-          locationError.value = 'Activa tu ubicación o selecciona un punto en el mapa. Usando ubicación por defecto (Bogotá).';
-          break;
-        case err.POSITION_UNAVAILABLE:
-          locationError.value = 'Ubicación no disponible. Usando ubicación por defecto (Bogotá).';
-          break;
-        case err.TIMEOUT:
-          locationError.value = 'Tiempo de espera agotado. Usando ubicación por defecto (Bogotá).';
-          break;
-        default:
-          locationError.value = 'Error al obtener ubicación. Usando ubicación por defecto (Bogotá).';
-      }
-      userLat.value = DEFAULT_LAT;
-      userLng.value = DEFAULT_LNG;
-    },
-    { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
-  );
-}
-
-const effectiveLat = computed(() => userLat.value ?? DEFAULT_LAT);
-const effectiveLng = computed(() => userLng.value ?? DEFAULT_LNG);
-
-function handleSearch(): void {
-  if (isLocating.value) return;
-
-  searchStore.search({
-    lat: effectiveLat.value,
-    lng: effectiveLng.value,
-    radius: selectedRadius.value,
-    categoryId: selectedCategoryId.value ?? undefined,
-    q: searchQuery.value || undefined,
-  });
-}
-
-function goToBusiness(id: string): void {
-  router.push({ name: 'business-detail', params: { id } });
-}
-
-const radiusOptions: { value: SearchRadius; label: string }[] = [
-  { value: 500, label: '500m' },
-  { value: 1000, label: '1km' },
-  { value: 2000, label: '2km' },
-];
-
-function getCategoryName(categoryId: string | null): string {
-  if (!categoryId) return '';
-  const cat = categoriesStore.categories.find((c) => c.id === categoryId);
-  return cat?.name ?? '';
-}
+// radiusOptions proviene del servicio — ya no está hardcodeada en la vista
+const radiusOptions = RADIUS_OPTIONS;
 </script>
 
 <template>
