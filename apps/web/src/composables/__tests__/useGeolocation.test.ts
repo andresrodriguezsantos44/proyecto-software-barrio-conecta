@@ -22,11 +22,13 @@ function mockGeolocationSuccess(lat: number, lng: number) {
       altitudeAccuracy: null,
       heading: null,
       speed: null,
+      toJSON: () => ({}),
     },
     timestamp: Date.now(),
+    toJSON: () => ({}),
   };
 
-  Object.defineProperty(global.navigator, 'geolocation', {
+  Object.defineProperty(globalThis.navigator, 'geolocation', {
     value: {
       getCurrentPosition: vi.fn((success: PositionCallback) => {
         success(mockPosition);
@@ -49,7 +51,7 @@ function mockGeolocationError(code: number) {
     TIMEOUT: 3,
   } as unknown as GeolocationPositionError;
 
-  Object.defineProperty(global.navigator, 'geolocation', {
+  Object.defineProperty(globalThis.navigator, 'geolocation', {
     value: {
       getCurrentPosition: vi.fn(
         (_success: PositionCallback, error: PositionErrorCallback) => {
@@ -63,7 +65,7 @@ function mockGeolocationError(code: number) {
 }
 
 function mockGeolocationUnavailable() {
-  Object.defineProperty(global.navigator, 'geolocation', {
+  Object.defineProperty(globalThis.navigator, 'geolocation', {
     value: undefined,
     configurable: true,
     writable: true,
