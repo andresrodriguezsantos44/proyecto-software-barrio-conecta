@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'bun:test';
 import { toReviewResponse } from '../service';
+import { AppError } from '../../shared/error';
 import type { ReviewDocument } from '../model';
 
 // ---------------------------------------------------------------------------
@@ -85,27 +86,23 @@ describe('Review Service — toReviewResponse (comprehensive)', () => {
 // ---------------------------------------------------------------------------
 describe('Review Service — error types (comprehensive)', () => {
   it('should cover 404 for review not found', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(404, 'Review not found');
     expect(err.statusCode).toBe(404);
     expect(err.status).toBe('fail');
   });
 
   it('should cover 400 for deactivated business review attempt', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(400, 'Cannot review a deactivated business');
     expect(err.statusCode).toBe(400);
   });
 
   it('should cover 400 for duplicate reply', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(400, 'Review already has a reply');
     expect(err.statusCode).toBe(400);
     expect(err.isOperational).toBe(true);
   });
 
   it('should cover 403 for non-owner reply attempt', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(403, 'Only the business owner can reply to reviews');
     expect(err.statusCode).toBe(403);
   });

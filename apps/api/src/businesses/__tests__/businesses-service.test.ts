@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'bun:test';
 import { toBusinessResponse } from '../service';
+import { AppError } from '../../shared/error';
 import type { BusinessDocument } from '../model';
 
 // ---------------------------------------------------------------------------
@@ -86,7 +87,6 @@ describe('Business Service — toBusinessResponse', () => {
 // ---------------------------------------------------------------------------
 describe('Business Service — error construction (comprehensive)', () => {
   it('should create AppError(409) with correct message for duplicate business', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(409, 'You already have an active business. Deactivate it before creating a new one.');
     expect(err.statusCode).toBe(409);
     expect(err.isOperational).toBe(true);
@@ -94,27 +94,23 @@ describe('Business Service — error construction (comprehensive)', () => {
   });
 
   it('should create AppError(404) for business not found', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(404, 'Business not found');
     expect(err.statusCode).toBe(404);
     expect(err.status).toBe('fail');
   });
 
   it('should create AppError(403) for unauthorized business update', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(403, 'You can only update your own business');
     expect(err.statusCode).toBe(403);
     expect(err.status).toBe('fail');
   });
 
   it('should create AppError(400) for category not found', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(400, 'Category not found');
     expect(err.statusCode).toBe(400);
   });
 
   it('should create AppError(400) for deactivated business', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(400, 'Business is already deactivated');
     expect(err.statusCode).toBe(400);
     expect(err.message).toContain('deactivated');

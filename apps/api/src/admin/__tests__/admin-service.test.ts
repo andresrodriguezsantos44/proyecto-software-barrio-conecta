@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'bun:test';
 import { toReportResponse } from '../service';
+import { AppError } from '../../shared/error';
 import type { ReportDocument } from '../model';
 
 // ---------------------------------------------------------------------------
@@ -91,7 +92,6 @@ describe('Admin Service — toReportResponse (comprehensive)', () => {
 // ---------------------------------------------------------------------------
 describe('Admin Service — error types (comprehensive)', () => {
   it('should create AppError(404) for report not found', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(404, 'Report not found');
     expect(err.statusCode).toBe(404);
     expect(err.status).toBe('fail');
@@ -99,25 +99,21 @@ describe('Admin Service — error types (comprehensive)', () => {
   });
 
   it('should create AppError(404) for business not found (deactivation)', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(404, 'Business not found');
     expect(err.statusCode).toBe(404);
   });
 
   it('should create AppError(400) for already deactivated business', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(400, 'Business is already deactivated');
     expect(err.statusCode).toBe(400);
   });
 
   it('should create AppError(403) for non-admin access', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(403, 'Insufficient permissions');
     expect(err.statusCode).toBe(403);
   });
 
   it('should create AppError(404) for reported target not found', () => {
-    const { AppError } = require('../../shared/error');
     const err = new AppError(404, 'Reported business not found');
     expect(err.statusCode).toBe(404);
   });
