@@ -59,7 +59,6 @@ jobs:
     env:
       MONGODB_URI: mongodb://localhost:27017/barrio-conecta-test
       JWT_SECRET: ci-test-secret-not-for-production
-      JWT_EXPIRES_IN: 1h
 
     steps:
       - uses: actions/checkout@v4

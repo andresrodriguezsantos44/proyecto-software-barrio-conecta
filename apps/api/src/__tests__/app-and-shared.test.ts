@@ -55,15 +55,27 @@ describe('Config — comprehensive', () => {
   });
 
   it('should use default MONGODB_URI and PORT when not set', () => {
+    // Snapshot so the test is hermetic regardless of the ambient environment
+    // (e.g. CI may export these — defaults can only be asserted when unset).
+    const original = {
+      JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN,
+      MONGODB_URI: process.env.MONGODB_URI,
+      PORT: process.env.PORT,
+    };
     process.env.JWT_SECRET = 'test';
     delete process.env.MONGODB_URI;
     delete process.env.PORT;
+    delete process.env.JWT_EXPIRES_IN;
     const cfg = buildConfig();
 
     expect(cfg.mongoUri).toBe('mongodb://localhost:27017/barrio-conecta');
     expect(cfg.jwtExpiresIn).toBe('24h');
 
+    // Restore
     delete process.env.JWT_SECRET;
+    if (original.JWT_EXPIRES_IN !== undefined) process.env.JWT_EXPIRES_IN = original.JWT_EXPIRES_IN;
+    if (original.MONGODB_URI !== undefined) process.env.MONGODB_URI = original.MONGODB_URI;
+    if (original.PORT !== undefined) process.env.PORT = original.PORT;
     resetConfig();
   });
 });
