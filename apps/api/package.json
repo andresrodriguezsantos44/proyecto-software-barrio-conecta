@@ -8,6 +8,7 @@
     "start": "bun run src/app.ts",
     "test": "bun test",
     "test:coverage": "bun test --coverage",
+    "coverage:html": "bun test --coverage && genhtml coverage/lcov.info --output-directory coverage/html --quiet",
     "e2e:server": "bun run src/e2e-server.ts",
     "openapi:export": "bun run src/shared/export-openapi.ts",
     "docs:api": "typedoc",

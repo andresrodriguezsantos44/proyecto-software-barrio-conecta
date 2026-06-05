@@ -13,3 +13,8 @@ coveragePathIgnorePatterns = ["src/app.ts"]
 # cada archivo medido debe alcanzar el 85%. El CI corre `bun test --coverage`
 # y falla si algún archivo cae por debajo. (Claves en plural: lines/functions.)
 coverageThreshold = { lines = 0.85, functions = 0.85 }
+
+# Reportes de cobertura: tabla en consola (text) + lcov.info para herramientas.
+# El HTML navegable se genera desde lcov con `genhtml` (ver docs/evidencias).
+coverageReporter = ["text", "lcov"]
+coverageDir = "coverage"
