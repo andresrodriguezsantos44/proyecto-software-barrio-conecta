@@ -1,6 +1,15 @@
 [test]
-# Cobertura mínima exigida (líneas y funciones). El CI corre `bun test --coverage`
-# y falla si la cobertura cae por debajo de este umbral.
-coverageThreshold = 0.85
 # No contabilizar los propios archivos de test en el reporte de cobertura.
 coverageSkipTestFiles = true
+
+# Excluir el punto de entrada del servidor: app.ts solo cablea rutas y arranca
+# el proceso (app.listen + buildConfig + import.meta.main). Sus rutas/middleware
+# SÍ se ejercitan vía los tests de integración; lo único sin cubrir es el
+# bootstrap del proceso, que no aporta valor unitario. Práctica estándar:
+# excluir el entry point del umbral de cobertura.
+coveragePathIgnorePatterns = ["src/app.ts"]
+
+# Umbral de cobertura exigido (líneas y funciones). Bun lo evalúa POR ARCHIVO:
+# cada archivo medido debe alcanzar el 85%. El CI corre `bun test --coverage`
+# y falla si algún archivo cae por debajo. (Claves en plural: lines/functions.)
+coverageThreshold = { lines = 0.85, functions = 0.85 }
