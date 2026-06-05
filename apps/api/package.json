@@ -10,6 +10,7 @@
     "test:coverage": "bun test --coverage",
     "e2e:server": "bun run src/e2e-server.ts",
     "openapi:export": "bun run src/shared/export-openapi.ts",
+    "docs:api": "typedoc",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "seed": "bun run src/shared/seed.ts"
@@ -39,6 +40,7 @@
     "eslint": "^10.3.0",
     "mongodb-memory-server": "^11.2.0",
     "supertest": "^7.2.2",
+    "typedoc": "^0.28.19",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.59.1"
   }

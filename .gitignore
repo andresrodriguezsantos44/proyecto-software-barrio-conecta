@@ -28,6 +28,9 @@ test-results/
 playwright-report/
 playwright/.cache/
 
+# typedoc (HTML generado — regenerar con `bun run --cwd apps/api docs:api`)
+docs/api/
+
 # Bun
 .bun/
 
