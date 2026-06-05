@@ -38,27 +38,13 @@ jobs:
         run: bun run typecheck
 
   # ---------------------------------------------------------------------------
-  # Gate 2 — Pruebas: unitarias + integración (API con bun test) y web (Vitest)
-  # Un contenedor de MongoDB queda disponible para los tests de integración.
+  # Gate 2 — Pruebas: unitarias + integración (API) y web (Vitest).
+  # Los tests de integración levantan MongoDB en memoria (mongodb-memory-server);
+  # el binario de mongod se cachea entre ejecuciones. La API exige cobertura ≥85%.
   # ---------------------------------------------------------------------------
   test:
     name: Tests
     runs-on: ubuntu-latest
-
-    services:
-      mongo:
-        image: mongo:7
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    env:
-      MONGODB_URI: mongodb://localhost:27017/barrio-conecta-test
-      JWT_SECRET: ci-test-secret-not-for-production
 
     steps:
       - uses: actions/checkout@v4
@@ -68,11 +54,17 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Cache MongoDB binary (mongodb-memory-server)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: mongodb-binaries-${{ runner.os }}
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Test — API (bun test + supertest)
-        run: bun run test:api
+      - name: Test — API (integración + cobertura ≥85%)
+        run: bun run --cwd apps/api test:coverage
 
       - name: Test — Web (Vitest)
         run: bun run test:web
@@ -98,14 +90,58 @@ jobs:
         run: bun run --cwd apps/web build
 
   # ---------------------------------------------------------------------------
-  # Despliegue a producción — SOLO en push/merge a main y si pasan los 3 gates.
+  # Gate 4 — E2E con Playwright contra el SPA (Vue) + API con Mongo en memoria.
+  # El servidor E2E levanta mongodb-memory-server, así que no requiere servicios.
+  # ---------------------------------------------------------------------------
+  e2e:
+    name: E2E (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache MongoDB binary (mongodb-memory-server)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/mongodb-binaries
+          key: mongodb-binaries-${{ runner.os }}
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run E2E (Playwright)
+        run: bun run --cwd apps/web test:e2e
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 7
+
+  # ---------------------------------------------------------------------------
+  # Despliegue a producción — SOLO en push/merge a main y si pasan los gates.
   # Frontend → Vercel · Backend → Render (vía Deploy Hook).
   # Requiere los secrets del repositorio (ver README → "Secrets de CI/CD").
   # ---------------------------------------------------------------------------
   deploy:
     name: Deploy (producción)
     runs-on: ubuntu-latest
-    needs: [quality, test, build]
+    needs: [quality, test, build, e2e]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4

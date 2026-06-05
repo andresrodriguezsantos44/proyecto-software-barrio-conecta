@@ -13,8 +13,11 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
+      // The SPA calls the API same-origin (/api/**) and Vite proxies it to the
+      // backend. Target is overridable via VITE_PROXY_TARGET (the E2E suite
+      // points it at the in-memory API server on port 3100).
       '/api': {
-        target: 'http://localhost:3000',
+        target: process.env.VITE_PROXY_TARGET || 'http://localhost:3000',
         changeOrigin: true,
       },
     },
