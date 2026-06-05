@@ -8,6 +8,7 @@
     "lint": "echo 'Web linting not yet configured —TODO for post-MVP'",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "build": "bunx --bun vite build"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@vitejs/plugin-vue": "^5.2.0",
     "@vue/compiler-sfc": "^3.5.33",
     "@vue/test-utils": "^2.4.10",
