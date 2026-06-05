@@ -196,6 +196,33 @@ Configurar en **GitHub → Settings → Secrets and variables → Actions**. Mie
 
 ---
 
+## 🐳 Docker (solo aprendizaje)
+
+El repo incluye un [`Dockerfile`](./Dockerfile) multi-stage (imagen base `oven/bun`) para la API
+y un [`docker-compose.yml`](./docker-compose.yml) que orquesta MongoDB + API (+ frontend opcional).
+
+```bash
+# Construir y levantar MongoDB + API
+cp .env.example .env        # define al menos JWT_SECRET
+docker compose up --build   # API en http://localhost:3000
+
+# Incluir además el frontend (Vite) en modo desarrollo
+docker compose --profile frontend up --build   # SPA en http://localhost:5173
+
+# Solo construir la imagen de la API
+docker build -t barrio-conecta-api .
+```
+
+Notas:
+- La API conecta a Mongo por el nombre de servicio de compose (`mongodb://mongo:27017/...`); el
+  `depends_on` espera a que Mongo esté *healthy* antes de arrancar.
+- Los puertos host son configurables vía `.env` (`API_PORT`, `MONGO_PORT`, `WEB_PORT`) para evitar
+  choques con otros servicios locales.
+- El `Dockerfile` instala las dependencias del workspace con `--linker hoisted` (necesario para que
+  la imagen final sea autocontenida en este monorepo Bun).
+
+---
+
 ## 👨‍💻 Autor
 **Andrés Alfonso Rodríguez Santos**
 *Ingeniería de Software — Corporación Universitaria Iberoamericana*

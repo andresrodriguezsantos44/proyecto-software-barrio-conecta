@@ -1,0 +1,44 @@
+# Dependencias y artefactos (se instalan/generan dentro de la imagen)
+node_modules
+**/node_modules
+dist
+**/dist
+.turbo
+
+# Frontend: no se necesita para la imagen de la API.
+# Se conserva solo su package.json para que el grafo de workspaces de Bun
+# resuelva durante `bun install` (la API depende de shared/contracts vía workspace:*).
+apps/web
+!apps/web/package.json
+
+# Tests y cobertura
+coverage
+**/coverage
+**/__tests__
+**/*.test.ts
+**/*.spec.ts
+apps/web/e2e
+apps/web/playwright-report
+apps/web/test-results
+
+# Entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Git y CI
+.git
+.github
+.gitignore
+
+# Editor / OS / tooling
+.vscode
+.idea
+.serena
+.DS_Store
+*.log
+
+# Docs y markdown sueltos
+docs
+*.md
+actividad.md

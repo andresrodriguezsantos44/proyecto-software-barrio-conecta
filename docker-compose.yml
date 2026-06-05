@@ -1,0 +1,60 @@
+# ============================================================================
+# BarrioConecta — orquestación local (solo aprendizaje)
+#
+#   docker compose up                 → MongoDB + API
+#   docker compose --profile frontend up   → MongoDB + API + frontend (Vite)
+#
+# Variables en .env (ver .env.example). No usar en producción tal cual.
+# ============================================================================
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      # Puerto host configurable para no chocar con otros Mongo locales.
+      - "${MONGO_PORT:-27017}:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      # Dentro de la red de compose, Mongo es alcanzable por el nombre del servicio.
+      MONGODB_URI: mongodb://mongo:27017/${MONGO_DB:-barrio-conecta}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-24h}
+    ports:
+      - "${API_PORT:-3000}:3000"
+
+  # Servicio opcional: SPA en modo desarrollo (Vite). Activar con:
+  #   docker compose --profile frontend up
+  frontend:
+    image: oven/bun:1-alpine
+    profiles: ["frontend"]
+    working_dir: /app
+    depends_on:
+      - api
+    environment:
+      # El proxy de Vite enruta /api → servicio api (ver vite.config.ts).
+      VITE_PROXY_TARGET: http://api:3000
+    command: sh -c "bun install && bun run --cwd apps/web dev --host 0.0.0.0"
+    volumes:
+      - ./:/app
+    ports:
+      - "${WEB_PORT:-5173}:5173"
+
+volumes:
+  mongo-data:
