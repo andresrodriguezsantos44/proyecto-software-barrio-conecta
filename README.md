@@ -119,10 +119,22 @@ bun run seed
 
 ### Pruebas
 ```bash
-bun run test        # Toda la suite (API + web)
-bun run test:api    # Solo API  (bun test + supertest)
-bun run test:web    # Solo web  (Vitest)
+bun run test                      # Toda la suite (API + web)
+bun run test:api                  # Solo API  (bun test + supertest)
+bun run test:web                  # Solo web  (Vitest)
+bun run --cwd apps/api test:coverage   # API con cobertura (umbral ≥85%)
+bun run --cwd apps/web test:e2e        # E2E con Playwright (Chromium)
 ```
+
+Estrategia de pruebas:
+- **Unitarias + integración (API)** con `bun test`. Los tests de **integración** usan
+  [`mongodb-memory-server`](https://github.com/typegoose/mongodb-memory-server) (MongoDB en
+  memoria), por lo que no requieren un Mongo externo. Cobertura global **≥85%**, exigida en CI.
+- **Componentes (web)** con Vitest + `@vue/test-utils`.
+- **E2E** con Playwright contra el SPA: registro/login de comerciante, alta de negocio y
+  búsqueda por categoría con apertura del detalle. El backend E2E también levanta Mongo en
+  memoria, así que `bun run --cwd apps/web test:e2e` funciona sin servicios externos
+  (la primera vez descarga el navegador Chromium).
 
 ### Calidad
 ```bash
@@ -165,11 +177,12 @@ La API se monta bajo el prefijo `/api/v1`. Endpoints disponibles:
 
 El pipeline vive en [`.github/workflows/ci.yml`](./.github/workflows/ci.yml):
 
-- **En cada Pull Request** corren tres gates de calidad en paralelo:
+- **En cada Pull Request** corren cuatro gates de calidad en paralelo:
   1. `Lint & Typecheck` — ESLint + `tsc`/`vue-tsc`.
-  2. `Tests` — `bun test` + `supertest` (API, con un contenedor MongoDB) y Vitest (web).
+  2. `Tests` — `bun test` + `supertest` (API, con MongoDB en memoria) y Vitest (web), exigiendo **cobertura ≥85%**.
   3. `Build` — build de producción del frontend con Vite.
-- **En cada push/merge a `main`**, si los tres gates pasan, se ejecuta el job `Deploy`: frontend → Vercel, backend → Render.
+  4. `E2E (Playwright)` — flujos de punta a punta contra el SPA.
+- **En cada push/merge a `main`**, si los gates pasan, se ejecuta el job `Deploy`: frontend → Vercel, backend → Render.
 
 ### Secrets de CI/CD
 Configurar en **GitHub → Settings → Secrets and variables → Actions**. Mientras no estén cargados, el job de deploy se omite con un *warning* (no rompe el pipeline):
