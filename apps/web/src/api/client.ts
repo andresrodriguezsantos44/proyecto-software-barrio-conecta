@@ -111,7 +111,7 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
   }
 
   // Execute request
-  const response = await fetch(url.pathname + url.search, {
+  const response = await fetch(url.toString(), {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
