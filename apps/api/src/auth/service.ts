@@ -23,8 +23,12 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 /**
- * Generate a JWT containing userId and role.
- * Uses HS256 with expiry from config.
+ * Genera un JWT firmado (HS256) con `userId` y `role` como claims.
+ * La vigencia se toma de `config.jwtExpiresIn`.
+ *
+ * @param userId - Identificador del usuario.
+ * @param role - Rol del usuario (`merchant` | `admin` | `neighbor`).
+ * @returns El token JWT firmado.
  */
 export function generateToken(userId: string, role: UserRole): string {
   const options: SignOptions = { expiresIn: config.jwtExpiresIn as jwt.SignOptions['expiresIn'] };
@@ -54,7 +58,19 @@ export async function findByEmail(email: string): Promise<UserDocument | null> {
 }
 
 /**
- * Register a new user. Throws AppError(409) if email is already taken.
+ * Registra un nuevo usuario: hashea la contraseña, lo persiste y emite un JWT.
+ *
+ * @param email - Email del usuario (se normaliza a minúsculas).
+ * @param password - Contraseña en texto plano (se hashea con bcrypt).
+ * @param name - Nombre visible del usuario.
+ * @param role - Rol a asignar. Por defecto `neighbor`.
+ * @returns El documento del usuario creado y su token JWT.
+ * @throws {AppError} 409 si el email ya está registrado.
+ *
+ * @example
+ * ```ts
+ * const { user, token } = await registerUser('ana@barrio.com', 'secret123', 'Ana', 'merchant');
+ * ```
  */
 export async function registerUser(
   email: string,
@@ -75,9 +91,15 @@ export async function registerUser(
 }
 
 /**
- * Authenticate a user by email and password.
- * Throws AppError(401) with generic "Invalid credentials" on failure
- * — never reveals whether the email exists.
+ * Autentica un usuario por email y contraseña.
+ *
+ * Por seguridad devuelve siempre el mismo error genérico ante credenciales
+ * inválidas: nunca revela si el email existe.
+ *
+ * @param email - Email del usuario.
+ * @param password - Contraseña en texto plano a verificar contra el hash.
+ * @returns El documento del usuario y un nuevo token JWT.
+ * @throws {AppError} 401 (`Invalid credentials`) si el email no existe o la contraseña no coincide.
  */
 export async function loginUser(
   email: string,

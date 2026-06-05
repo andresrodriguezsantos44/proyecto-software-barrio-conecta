@@ -177,6 +177,14 @@ Con la API corriendo:
 El spec se genera desde anotaciones `@openapi` (JSDoc) en las rutas, con `swagger-jsdoc`.
 Para regenerar el archivo versionado: `bun run --cwd apps/api openapi:export`.
 
+### Referencia técnica (TSDoc / TypeDoc)
+Los servicios y funciones clave están documentados con **TSDoc** (`@param`, `@returns`,
+`@throws`, `@example`). Para generar la referencia HTML en `docs/api/`:
+```bash
+bun run --cwd apps/api docs:api
+```
+(El HTML generado no se versiona; se regenera con el comando anterior.)
+
 ---
 
 ## 🔄 CI/CD (GitHub Actions)

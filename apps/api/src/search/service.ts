@@ -76,8 +76,20 @@ export async function searchByRadius(input: SearchInput): Promise<{ businesses: 
 }
 
 /**
- * Haversine formula to compute great-circle distance in meters between two points.
- * Exported for testing.
+ * Calcula la distancia de círculo máximo (fórmula de Haversine) en metros
+ * entre dos coordenadas geográficas.
+ *
+ * @param lat1 - Latitud del primer punto (grados).
+ * @param lng1 - Longitud del primer punto (grados).
+ * @param lat2 - Latitud del segundo punto (grados).
+ * @param lng2 - Longitud del segundo punto (grados).
+ * @returns La distancia en metros.
+ *
+ * @example
+ * ```ts
+ * // Centro de Bogotá a ~800 m al noreste
+ * computeDistance(4.6097, -74.0817, 4.6142, -74.0760); // ≈ 800
+ * ```
  */
 export function computeDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
   const R = 6371000; // Earth's mean radius in meters
@@ -95,15 +107,17 @@ function toRad(deg: number): number {
 }
 
 /**
- * Check if a business is currently open based on its schedule.
- * Uses the current day of the week and time.
+ * Indica si un negocio está abierto en un instante dado, según su horario
+ * semanal (`schedule`) y el día de la semana correspondiente.
  *
- * The reference time is injectable via the `now` parameter (defaults to the
- * current instant). Injecting the clock keeps callers unchanged while making
- * the function deterministically testable — a test must never depend on the
- * wall clock.
+ * El reloj de referencia es inyectable vía `now` (por defecto, el instante
+ * actual): inyectarlo mantiene a los llamadores sin cambios y hace la función
+ * determinista en tests — una prueba nunca debe depender del reloj de pared.
  *
- * Exported for testing.
+ * @param biz - Documento del negocio (o un objeto con la propiedad `schedule`).
+ * @param now - Instante de referencia. Por defecto `new Date()`.
+ * @returns `true` si el negocio está abierto en `now`; `false` si está cerrado
+ *          o no tiene horario para ese día.
  */
 export function checkIsOpenNow(
   biz: BusinessDocument | Record<string, unknown>,

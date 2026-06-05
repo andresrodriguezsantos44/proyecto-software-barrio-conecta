@@ -5,8 +5,16 @@ import type { CreateBusinessInput, UpdateBusinessInput } from './schemas';
 
 
 /**
- * Create a new business for a merchant.
- * BM-02: Enforces one active business per merchant.
+ * Crea un negocio para un comerciante.
+ *
+ * Aplica la regla **BM-02**: cada comerciante puede tener un único negocio
+ * activo. Verifica además que la categoría exista antes de crear.
+ *
+ * @param ownerId - Id del comerciante dueño.
+ * @param input - Datos del negocio (nombre, categoría, ubicación, horario, fotos).
+ * @returns El documento del negocio creado.
+ * @throws {AppError} 409 si el comerciante ya tiene un negocio activo (BM-02).
+ * @throws {AppError} 400 si la categoría indicada no existe.
  */
 export async function createBusiness(
   ownerId: string,

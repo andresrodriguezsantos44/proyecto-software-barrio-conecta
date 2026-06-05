@@ -1,0 +1,22 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "BarrioConecta API — Referencia técnica (TSDoc)",
+  "entryPoints": [
+    "src/auth/service.ts",
+    "src/businesses/service.ts",
+    "src/search/service.ts",
+    "src/reviews/service.ts",
+    "src/admin/service.ts",
+    "src/auth/middleware.ts",
+    "src/shared/config.ts",
+    "src/shared/error.ts",
+    "../../shared/contracts/src/index.ts"
+  ],
+  "out": "../../docs/api",
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "hideGenerator": true,
+  "skipErrorChecking": true,
+  "categorizeByGroup": true
+}
