@@ -9,19 +9,22 @@
     "test": "bun test",
     "test:coverage": "bun test --coverage",
     "e2e:server": "bun run src/e2e-server.ts",
+    "openapi:export": "bun run src/shared/export-openapi.ts",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "seed": "bun run src/shared/seed.ts"
   },
   "dependencies": {
     "@barrio-conecta/contracts": "workspace:*",
-    "express": "^4.21.0",
-    "mongoose": "^8.9.0",
-    "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^2.4.3",
-    "joi": "^17.13.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.0"
+    "dotenv": "^16.4.0",
+    "express": "^4.21.0",
+    "joi": "^17.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -31,6 +34,8 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/supertest": "^7.2.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "eslint": "^10.3.0",
     "mongodb-memory-server": "^11.2.0",
     "supertest": "^7.2.2",
