@@ -169,7 +169,13 @@ La API se monta bajo el prefijo `/api/v1`. Endpoints disponibles:
 | `GET` | `/admin/stats` | sí | Estadísticas del panel |
 | `GET` | `/categories` | — | Listar categorías |
 
-> La documentación interactiva Swagger/OpenAPI se sirve en `/api/docs` (entrega final).
+### Documentación interactiva (Swagger / OpenAPI)
+Con la API corriendo:
+- **Swagger UI**: [`http://localhost:3000/api/docs`](http://localhost:3000/api/docs) — explora y prueba los 17 endpoints.
+- **Spec OpenAPI 3 (JSON)**: `http://localhost:3000/api/docs.json`, también versionado en [`docs/openapi.json`](./docs/openapi.json).
+
+El spec se genera desde anotaciones `@openapi` (JSDoc) en las rutas, con `swagger-jsdoc`.
+Para regenerar el archivo versionado: `bun run --cwd apps/api openapi:export`.
 
 ---
 

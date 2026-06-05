@@ -28,7 +28,6 @@ await Category.create([
 ]);
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`🧪 E2E API (in-memory Mongo) running on port ${PORT}`);
 });
 

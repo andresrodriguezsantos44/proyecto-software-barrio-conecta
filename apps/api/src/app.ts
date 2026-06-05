@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import express, { type Express } from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import { globalErrorHandler } from './shared/error';
 import { connectDatabase } from './shared/db';
 import { buildConfig } from './shared/config';
+import { openapiSpec } from './shared/openapi';
 import { authRoutes } from './auth/routes';
 import { businessRoutes } from './businesses/routes';
 import { searchRoutes } from './search/routes';
@@ -17,6 +19,31 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
+// --- API docs (Swagger UI + spec JSON) ---
+app.get('/api/docs.json', (_req, res) => {
+  res.json(openapiSpec);
+});
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openapiSpec, {
+  customSiteTitle: 'BarrioConecta API — Docs',
+}));
+
+/**
+ * @openapi
+ * /health:
+ *   get:
+ *     tags: [Health]
+ *     summary: Estado del servicio
+ *     responses:
+ *       200:
+ *         description: El servicio está operativo.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status: { type: string, example: ok }
+ *                 timestamp: { type: string, format: date-time }
+ */
 // --- Health check ---
 app.get('/api/v1/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
