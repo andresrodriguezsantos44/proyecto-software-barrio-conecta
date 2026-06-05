@@ -1,0 +1,6 @@
+[test]
+# Cobertura mínima exigida (líneas y funciones). El CI corre `bun test --coverage`
+# y falla si la cobertura cae por debajo de este umbral.
+coverageThreshold = 0.85
+# No contabilizar los propios archivos de test en el reporte de cobertura.
+coverageSkipTestFiles = true

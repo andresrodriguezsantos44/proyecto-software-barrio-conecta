@@ -7,6 +7,8 @@
     "dev": "bun run --hot src/app.ts",
     "start": "bun run src/app.ts",
     "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "e2e:server": "bun run src/e2e-server.ts",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "seed": "bun run src/shared/seed.ts"
@@ -30,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/supertest": "^7.2.0",
     "eslint": "^10.3.0",
+    "mongodb-memory-server": "^11.2.0",
     "supertest": "^7.2.2",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.59.1"
